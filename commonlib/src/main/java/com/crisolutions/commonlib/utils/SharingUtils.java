@@ -11,7 +11,7 @@ import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.widget.Toast;
 
-import com.cri.android.common.R;
+import com.crisolutions.commonlib.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

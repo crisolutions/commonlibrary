@@ -8,7 +8,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 
-import com.cri.android.common.utils.UiUtils;
+import com.crisolutions.commonlib.utils.UiUtils;
 
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;

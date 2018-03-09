@@ -152,7 +152,7 @@ public class UiUtils {
     }
 
     public static void animateToDrawerIndicator(
-            Toolbar toolbar, int drawerColor, @Nullable Runnable completionRunnable) {
+            Toolbar toolbar, int drawerColor, @Nullable final Runnable completionRunnable) {
         DrawerArrowDrawable drawerArrow = new DrawerArrowDrawable(toolbar.getContext());
         drawerArrow.setColor(ContextCompat.getColor(toolbar.getContext(), drawerColor));
         toolbar.setNavigationIcon(drawerArrow);

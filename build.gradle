@@ -22,6 +22,25 @@ allprojects {
     }
 }
 
+ext {
+    supportLibraryVersion = '27.0.2'
+    buildToolsVersion = '27.0.3'
+    daggerVersion = '2.14.1'
+    timberVersion = '4.6.0'
+    retrofitVersion = '2.3.0'
+    rxJavaVersion = '2.1.8'
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+    minSdkVersion = 21
+}
+
+ext.deps = [
+        dagger                : "com.google.dagger:dagger:${daggerVersion}",
+        timber                : "com.jakewharton.timber:timber:${timberVersion}",
+        retrofit              : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+        rxjava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+]
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
