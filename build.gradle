@@ -31,7 +31,7 @@ ext {
     rxJavaVersion = '2.1.8'
     targetSdkVersion = 27
     compileSdkVersion = 27
-    minSdkVersion = 21
+    minSdkVersion = 19
 }
 
 ext.deps = [

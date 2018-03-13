@@ -7,7 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.cri.android.common.R;
+import com.crisolutions.commonlib.R;
+
 
 @SuppressWarnings("unused") // This class is used in resources.
 public final class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
