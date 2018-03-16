@@ -1,4 +1,4 @@
-package com.crisolutions.arvestcommonlibrary
+package com.crisolutions.commonlibrarysample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
