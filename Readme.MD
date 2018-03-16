@@ -18,5 +18,5 @@ allprojects {
 And then add the dependency :
 
 ```
-implementation 'com.github.crisolutions:commonlibrary:1.0'
+implementation 'com.github.crisolutions:commonlibrary:1.0.1'
 ```
