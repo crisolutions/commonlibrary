@@ -1,4 +1,4 @@
-package com.crisolutions.arvestcommonlibrary
+package com.crisolutions.commonlibrarysample
 
 import org.junit.Test
 
