@@ -20,3 +20,17 @@ And then add the dependency :
 ```
 implementation 'com.github.crisolutions:commonlibrary:1.0.1'
 ```
+
+Finally, update the Source and Target Compatibility to 1.8 in Project Structure for whichever module this dependency is being added to, or add 
+
+```
+android {
+        ...
+	compileOptions {
+       	    sourceCompatibility JavaVersion.VERSION_1_8
+	    targetCompatibility JavaVersion.VERSION_1_8
+	}
+}
+```
+
+to the module's gradle file.
