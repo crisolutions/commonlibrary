@@ -30,6 +30,12 @@ public class SampleJ {
         lprint("Output : " + output);
     }
 
+    public void capitalizeWords() {
+        String testString = "tjis is the Test thingy yo asd s";
+        testString = StringUtils.capitalizeWords(testString);
+        lprint(testString);
+    }
+
     static void lprint(String output) {
         Log.d("Java Sample", output);
     }

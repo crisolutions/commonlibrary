@@ -17,7 +17,10 @@ class MainActivity : AppCompatActivity() {
         //sample.stripNonDigitsSample()
         //samplej.stripNonDigitsSample()
 
-        sampleK.arrayToMultiLineStringSample()
-        sampleJ.arrayToMultiLineStringSample()
+        //sampleK.arrayToMultiLineStringSample()
+        //sampleJ.arrayToMultiLineStringSample()
+
+        sampleK.capitalizeWords()
+        sampleJ.capitalizeWords()
     }
 }

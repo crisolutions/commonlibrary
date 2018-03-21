@@ -20,3 +20,16 @@ fun Array<String>.arrayToMultiLineString(): String {
     }
     return sb.toString().trim()
 }
+
+fun String.capitalizeWords(): String {
+    val pieces: List<String> = this.split(" ")
+
+    val sb = StringBuilder()
+    pieces.map {
+        val capL = it.first().toUpperCase()
+        val part = it.substring(1)
+        sb.append("$capL$part").append(" ")
+    }
+
+    return sb.toString().trim()
+}
