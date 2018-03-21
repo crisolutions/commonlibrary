@@ -11,10 +11,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sample = SampleKt()
-        val samplej = SampleJ()
+        val sampleK = SampleKt()
+        val sampleJ = SampleJ()
 
-        sample.stripNonDigitsSample()
-        samplej.stripNonDigitsSample()
+        //sample.stripNonDigitsSample()
+        //samplej.stripNonDigitsSample()
+
+        sampleK.arrayToMultiLineStringSample()
+        sampleJ.arrayToMultiLineStringSample()
     }
 }

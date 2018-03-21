@@ -1,6 +1,7 @@
 package com.crisolutions.commonlibrarysample.Samples
 
 import android.util.Log
+import com.crisolutions.commonlibraryktx.arrayToMultiLineString
 import com.crisolutions.commonlibraryktx.stripNonDigits
 
 /**
@@ -15,6 +16,12 @@ class SampleKt {
         lprint(testString)
         testString = testString.stripNonDigits()
         lprint("After Change : $testString")
+    }
+
+    fun arrayToMultiLineStringSample() {
+        val list: Array<String> = arrayOf("first","The second item", "Final item, third . ")
+        val output = list.arrayToMultiLineString()
+        lprint("Output: $output")
     }
 }
 
