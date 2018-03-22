@@ -1,5 +1,8 @@
 package com.crisolutions.commonlibraryktx
 
+import android.os.Build
+import android.text.Html
+
 /**
  * Created by parshav on 3/16/18.
  */
@@ -32,4 +35,12 @@ fun String.capitalizeWords(): String {
     }
 
     return sb.toString().trim()
+}
+
+fun String.convertFromHtml(): {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
+    } else {
+        Html.fromHtml(this).toString()
+    }
 }
