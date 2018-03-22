@@ -8,7 +8,6 @@ import android.text.Html
  */
 
 fun String.stripNonDigits(): String {
-    this.isNotEmpty()
     return this.replace(kotlin.text.Regex("[\\D]"), "")
 }
 
