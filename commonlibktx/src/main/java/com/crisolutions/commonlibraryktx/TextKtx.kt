@@ -6,7 +6,7 @@ import android.widget.TextView
  * Created by Parshav on 3/22/18.
  */
 
-class TextKtx {
+class TextTools {
     companion object {
         val DOT: Char = '\u2022'
     }
@@ -16,11 +16,11 @@ fun TextView.getTextWidth(): Int {
     return this.measuredWidth
 }
 
-fun String.maskText(visibleChars: Int) = this.maskText(visibleChars, TextKtx.DOT)
+fun String.maskText(visibleChars: Int) = this.maskText(visibleChars, TextTools.DOT)
 
 fun String.maskText(visibleChars: Int, maskCharacter: Char) = this.maskText(visibleChars, maskCharacter, -1)
 
-fun String.maskText(visibleChars: Int, maxLength: Int) = this.maskText(visibleChars, TextKtx.DOT, maxLength)
+fun String.maskText(visibleChars: Int, maxLength: Int) = this.maskText(visibleChars, TextTools.DOT, maxLength)
 
 fun String.maskText(visibleChars: Int, maskCharacter: Char, maxLength: Int): CharSequence {
     return when {
