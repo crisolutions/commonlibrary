@@ -37,7 +37,7 @@ fun String.capitalizeWords(): String {
     return sb.toString().trim()
 }
 
-fun String.convertFromHtml(): {
+fun String.convertFromHtml(): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
     } else {
