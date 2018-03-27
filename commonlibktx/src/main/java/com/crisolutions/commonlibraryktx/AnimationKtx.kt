@@ -17,7 +17,7 @@ import android.view.animation.Animation
 
 class AnimationTools {
     companion object {
-        val DEFAULT_DURATION = 400L
+        const val DEFAULT_DURATION = 400L
 
         fun collapseView(view: View, forHeight: Boolean, insant: Boolean, animationFinishCallback: Runnable?) {
             var value = if (forHeight) view.height else view.width

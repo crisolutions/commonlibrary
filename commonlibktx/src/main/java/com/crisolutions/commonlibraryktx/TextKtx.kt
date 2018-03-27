@@ -8,7 +8,7 @@ import android.widget.TextView
 
 class TextTools {
     companion object {
-        val DOT: Char = '\u2022'
+        const val DOT: Char = '\u2022'
     }
 }
 fun TextView.getTextWidth(): Int {

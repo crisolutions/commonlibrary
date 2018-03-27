@@ -15,9 +15,9 @@ import java.util.*
 
 class FileTools {
     companion object {
-        val BUFFER_SIZE = 4096
-        val SHARE_DIR = "shared/"
-        val JPEG_QUALITY = 80
+        const val BUFFER_SIZE = 4096
+        const val SHARE_DIR = "shared/"
+        const val JPEG_QUALITY = 80
         val FILE_TIMESTAMP_FORMATTER = SimpleDateFormat("yyyMMdd_HHmmss", Locale.getDefault())
 
         @Throws(IOException::class)
