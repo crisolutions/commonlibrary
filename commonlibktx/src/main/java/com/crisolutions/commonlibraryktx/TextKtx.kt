@@ -2,13 +2,9 @@ package com.crisolutions.commonlibraryktx
 
 import android.widget.TextView
 
-/**
- * Created by Parshav on 3/22/18.
- */
-
 class TextTools {
     companion object {
-        val DOT: Char = '\u2022'
+        const val DOT: Char = '\u2022'
     }
 }
 fun TextView.getTextWidth(): Int {

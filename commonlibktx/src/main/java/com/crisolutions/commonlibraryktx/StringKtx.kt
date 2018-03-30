@@ -3,10 +3,6 @@ package com.crisolutions.commonlibraryktx
 import android.os.Build
 import android.text.Html
 
-/**
- * Created by parshav on 3/16/18.
- */
-
 fun String.stripNonDigits(): String {
     return this.replace(kotlin.text.Regex("[\\D]"), "")
 }

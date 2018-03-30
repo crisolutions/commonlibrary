@@ -20,15 +20,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
-/**
- * Created by Parshav on 3/22/18.
- */
-
 class UiTools {
     companion object {
-        val ERROR_MESSAGE_URL = "Requested URL cannot be found."
-        val METERS_TO_MILES_RATIO = 0.000621371192f
-        val NAV_DRAWER_ICON_ANIM = "progress"
+        const val ERROR_MESSAGE_URL = "Requested URL cannot be found."
+        const val METERS_TO_MILES_RATIO = 0.000621371192f
+        const val NAV_DRAWER_ICON_ANIM = "progress"
 
         fun getScreenWidth() = Resources.getSystem().displayMetrics.widthPixels
 
