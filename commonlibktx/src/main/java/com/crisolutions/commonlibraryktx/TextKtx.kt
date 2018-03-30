@@ -2,10 +2,6 @@ package com.crisolutions.commonlibraryktx
 
 import android.widget.TextView
 
-/**
- * Created by Parshav on 3/22/18.
- */
-
 class TextTools {
     companion object {
         const val DOT: Char = '\u2022'

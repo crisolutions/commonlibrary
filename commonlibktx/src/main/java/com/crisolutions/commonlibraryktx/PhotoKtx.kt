@@ -32,11 +32,11 @@ fun Uri.getRotatedBitmap(context: Context): Bitmap? {
 
         var bitmap: Bitmap?
 
-        if (inputStream.markSupported()) {
+        bitmap = if (inputStream.markSupported()) {
             inputStream.reset()
-            bitmap = BitmapFactory.decodeStream(inputStream)
+            BitmapFactory.decodeStream(inputStream)
         } else {
-            bitmap = BitmapFactory.decodeStream(context.contentResolver.openInputStream(this))
+            BitmapFactory.decodeStream(context.contentResolver.openInputStream(this))
         }
         if (rotation > 0) {
             val matrix = Matrix()

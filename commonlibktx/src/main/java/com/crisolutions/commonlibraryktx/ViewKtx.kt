@@ -7,10 +7,6 @@ import android.view.View
 import android.widget.EditText
 import java.util.*
 
-/**
- * Created by Parshav on 3/23/18.
- */
-
 fun TextInputLayout.setTextInputLayoutError(error: String) {
     this.error = error
     if (error.isEmpty()) {

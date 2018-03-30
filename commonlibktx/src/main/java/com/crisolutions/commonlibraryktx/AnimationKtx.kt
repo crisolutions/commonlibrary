@@ -11,16 +11,12 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.Animation
 
-/**
- * Created by Parshav on 3/23/18.
- */
-
 class AnimationTools {
     companion object {
         const val DEFAULT_DURATION = 400L
 
         fun collapseView(view: View, forHeight: Boolean, insant: Boolean, animationFinishCallback: Runnable?) {
-            var value = if (forHeight) view.height else view.width
+            val value = if (forHeight) view.height else view.width
 
             val animator = ValueAnimator.ofInt(value, 0)
 
@@ -59,7 +55,7 @@ class AnimationTools {
         fun expandView(view: View, forHeight: Boolean, instant: Boolean, animationFinishCallback: Runnable?) {
             view.visibility = VISIBLE
             view.measure(makeMeasureSpec(0, UNSPECIFIED), makeMeasureSpec(0, UNSPECIFIED))
-            var value = if (forHeight) view.measuredHeight else view.measuredWidth
+            val value = if (forHeight) view.measuredHeight else view.measuredWidth
             if (instant) {
                 val params = view.layoutParams
                 if (forHeight) {

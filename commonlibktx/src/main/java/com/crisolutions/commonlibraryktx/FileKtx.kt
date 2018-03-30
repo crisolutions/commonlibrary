@@ -9,10 +9,6 @@ import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Created by Parshav on 3/23/18.
- */
-
 class FileTools {
     companion object {
         const val BUFFER_SIZE = 4096
@@ -25,7 +21,7 @@ class FileTools {
             val buffer = ByteArray(BUFFER_SIZE)
 
             //not sure..
-            var read = inputStream.read(buffer)
+            val read = inputStream.read(buffer)
             while (read != -1) {
                 outputStream.write(buffer, 0, read)
             }

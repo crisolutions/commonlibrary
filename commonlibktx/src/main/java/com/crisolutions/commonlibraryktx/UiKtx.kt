@@ -20,10 +20,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
-/**
- * Created by Parshav on 3/22/18.
- */
-
 class UiTools {
     companion object {
         const val ERROR_MESSAGE_URL = "Requested URL cannot be found."

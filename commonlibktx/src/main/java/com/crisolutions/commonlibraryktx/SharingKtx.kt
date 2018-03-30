@@ -15,10 +15,6 @@ import android.widget.Toast.LENGTH_SHORT
 import java.io.File
 import java.io.FileOutputStream
 
-/**
- * Created by Parshav on 3/23/18.
- */
-
 fun Context.sendEmail(email: String) {
     val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null))
     this.startActivity(Intent.createChooser(intent, null))
