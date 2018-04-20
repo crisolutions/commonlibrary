@@ -15,7 +15,6 @@ public final class AnimationUtils {
     private static final int DEFAULT_DURATION = 400;
 
     private AnimationUtils() {
-
     }
 
     public static void animateHeight(View view, boolean collapse) {

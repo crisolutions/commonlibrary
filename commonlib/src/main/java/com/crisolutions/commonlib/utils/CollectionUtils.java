@@ -25,11 +25,12 @@ public final class CollectionUtils {
         return null;
     }
 
-    public static <T> T lastItem(List<T> list){
-        if (isEmpty(list)){
+    @Nullable
+    public static <T> T lastItem(List<T> list) {
+        if (isEmpty(list)) {
             return null;
         } else {
-            return list.get(list.size()-1);
+            return list.get(list.size() - 1);
         }
     }
 }
