@@ -1,6 +1,6 @@
 # Common Library
 
-Library of the Common module from CRI Solutions.
+Library of the Common module from CRi Solutions.
 
 ## Getting Started
 

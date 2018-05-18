@@ -8,19 +8,17 @@ import android.view.View.GONE
 import android.view.View.MeasureSpec.UNSPECIFIED
 import android.view.View.MeasureSpec.makeMeasureSpec
 import android.view.View.VISIBLE
-import android.view.ViewGroup
-import android.view.animation.Animation
 
 class AnimationTools {
     companion object {
         const val DEFAULT_DURATION = 400L
 
-        fun collapseView(view: View, forHeight: Boolean, insant: Boolean, animationFinishCallback: Runnable?) {
+        fun collapseView(view: View, forHeight: Boolean, instant: Boolean, animationFinishCallback: Runnable?) {
             val value = if (forHeight) view.height else view.width
 
             val animator = ValueAnimator.ofInt(value, 0)
 
-            if (insant) {
+            if (instant) {
                 val params = view.layoutParams
                 if (forHeight) {
                     params.height = 0
