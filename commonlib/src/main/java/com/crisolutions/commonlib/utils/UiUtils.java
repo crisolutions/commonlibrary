@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
@@ -25,13 +26,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class UiUtils {
-
-    public static final int EARTH_RADIUS = 6371000;
+public final class UiUtils {
 
     private static final String NAV_DRAWER_ICON_ANIM = "progress";
     private static final String ERROR_MESSAGE_URL = "Requested URL cannot be found.";
     private static final float METERS_TO_MILES_RATIO = 0.000621371192f;
+
+    private UiUtils() {
+    }
 
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String html) {
@@ -45,7 +47,7 @@ public class UiUtils {
         return result;
     }
 
-    public static void openExternalLink(Context context, String url, @Nullable String errorMessage) {
+    public static void openExternalLink(@NonNull Context context, String url, @Nullable String errorMessage) {
         String formattedUrl = url;
         if (!StringUtils.isEmpty(formattedUrl)) {
             if (!url.startsWith("http")) {
@@ -64,11 +66,7 @@ public class UiUtils {
         }
     }
 
-    public static void openSettings(final Context context) {
-        if (context == null) {
-            return;
-        }
-
+    public static void openSettings(@NonNull final Context context) {
         final Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package", context.getPackageName(), null);
@@ -86,7 +84,7 @@ public class UiUtils {
      * @param context Context to get resources and device specific display metrics
      * @return A float value to represent px equivalent to dp depending on device density
      */
-    public static float convertDpToPixel(Context context, float dp) {
+    public static float convertDpToPixel(@NonNull Context context, float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         return dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
@@ -99,7 +97,7 @@ public class UiUtils {
      * @param context Context to get resources and device specific display metrics
      * @return A float value to represent dp equivalent to px value
      */
-    public static float convertPixelsToDp(Context context, float px) {
+    public static float convertPixelsToDp(@NonNull Context context, float px) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         return px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
@@ -108,7 +106,7 @@ public class UiUtils {
     /**
      * @return returns {@link Color#BLACK} if color can not be found
      */
-    public static int getColorFromAttribute(Activity activity, int[] attrs) {
+    public static int getColorFromAttribute(@NonNull Activity activity, int[] attrs) {
         int color = 0;
 
         try {
@@ -135,7 +133,7 @@ public class UiUtils {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
-    public static int getStatusBarHeight(Context context) {
+    public static int getStatusBarHeight(@NonNull Context context) {
         int result = 0;
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
@@ -144,7 +142,7 @@ public class UiUtils {
         return result;
     }
 
-    public static void animateToBackIndicator(Toolbar toolbar, int drawerColor) {
+    public static void animateToBackIndicator(@NonNull Toolbar toolbar, int drawerColor) {
         DrawerArrowDrawable drawerArrow = new DrawerArrowDrawable(toolbar.getContext());
         drawerArrow.setColor(ContextCompat.getColor(toolbar.getContext(), drawerColor));
         toolbar.setNavigationIcon(drawerArrow);
@@ -152,7 +150,7 @@ public class UiUtils {
     }
 
     public static void animateToDrawerIndicator(
-            Toolbar toolbar, int drawerColor, @Nullable final Runnable completionRunnable) {
+            @NonNull Toolbar toolbar, int drawerColor, @Nullable final Runnable completionRunnable) {
         DrawerArrowDrawable drawerArrow = new DrawerArrowDrawable(toolbar.getContext());
         drawerArrow.setColor(ContextCompat.getColor(toolbar.getContext(), drawerColor));
         toolbar.setNavigationIcon(drawerArrow);
@@ -168,7 +166,7 @@ public class UiUtils {
         animator.start();
     }
 
-    public static void showDrawerIcon(Toolbar toolbar, int drawerColor) {
+    public static void showDrawerIcon(@NonNull Toolbar toolbar, int drawerColor) {
         DrawerArrowDrawable drawerArrow = new DrawerArrowDrawable(toolbar.getContext());
         drawerArrow.setColor(ContextCompat.getColor(toolbar.getContext(), drawerColor));
         toolbar.setNavigationIcon(drawerArrow);
@@ -178,17 +176,12 @@ public class UiUtils {
     /**
      * Don't remove this method even if it has no usages. During development we use this method to notify testers
      * about a future feature that's not linked to current work yet.
-     *
      */
-    public static void notImplemented(Context context) {
+    public static void notImplemented(@NonNull Context context) {
         Toast.makeText(context, "This feature not implemented yet", Toast.LENGTH_SHORT).show();
     }
 
-    public static void enableDisableView(View view, boolean enabled) {
-        if (view == null) {
-            return;
-        }
-
+    public static void enableDisableView(@NonNull View view, boolean enabled) {
         view.setEnabled(enabled);
 
         if (view instanceof ViewGroup) {

@@ -50,14 +50,14 @@ public final class StringUtils {
         return isEmpty(value) ? null : value;
     }
 
-    public static String safeString(String value) {
+    public static String safeString(@Nullable String value) {
         if (value == null) {
             return "";
         }
         return value;
     }
 
-    public static String stripNonDigits(String phoneNumber) {
+    public static String stripNonDigits(@Nullable String phoneNumber) {
         if (phoneNumber == null){
             return null;
         }
@@ -65,7 +65,7 @@ public final class StringUtils {
         return phoneNumber.replaceAll("[\\D]", "");
     }
 
-    public static boolean safeEquals(String first, String second) {
+    public static boolean safeEquals(@Nullable String first, @Nullable String second) {
         if (first == null) {
             return second == null;
         }

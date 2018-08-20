@@ -20,31 +20,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
-class UiTools {
-    companion object {
-        const val ERROR_MESSAGE_URL = "Requested URL cannot be found."
-        const val METERS_TO_MILES_RATIO = 0.000621371192f
-        const val NAV_DRAWER_ICON_ANIM = "progress"
+object UiTools {
+    const val ERROR_MESSAGE_URL = "Requested URL cannot be found."
+    const val MILES_PER_METER_RATIO = 0.000621371192f
+    const val NAV_DRAWER_ICON_ANIM = "progress"
 
-        fun getScreenWidth() = Resources.getSystem().displayMetrics.widthPixels
+    fun getScreenWidth() = Resources.getSystem().displayMetrics.widthPixels
 
-        fun getScreenHeight() = Resources.getSystem().displayMetrics.heightPixels
+    fun getScreenHeight() = Resources.getSystem().displayMetrics.heightPixels
 
-        fun getStatusbarHeight(context: Context): Int {
-            var result = 0
-            val resourceId = context.resources.getIdentifier("status_bar_heigh", "dimen", "android")
-            if (resourceId > 0) {
-                result = context.resources.getDimensionPixelSize(resourceId)
-            }
-            return result
+    fun getStatusbarHeight(context: Context): Int {
+        var result = 0
+        val resourceId = context.resources.getIdentifier("status_bar_heigh", "dimen", "android")
+        if (resourceId > 0) {
+            result = context.resources.getDimensionPixelSize(resourceId)
         }
+        return result
     }
 }
 
 fun String.openExternalLink(context: Context, errorMessage: String) {
-    if (!this.isEmpty()) {
+    if (!isEmpty()) {
         var formattedUrl = this
-        if (this.startsWith("http")) {
+        if (startsWith("http")) {
             formattedUrl = "http://$this"
         }
 
@@ -54,7 +52,7 @@ fun String.openExternalLink(context: Context, errorMessage: String) {
             e.printStackTrace()
         }
     } else {
-        Toast.makeText(context, if(errorMessage.isEmpty()) UiTools.ERROR_MESSAGE_URL else errorMessage, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, if (errorMessage.isEmpty()) UiTools.ERROR_MESSAGE_URL else errorMessage, Toast.LENGTH_SHORT).show()
     }
 }
 
@@ -96,19 +94,19 @@ fun IntArray.getColorFromAttribute(activity: Activity): Int {
     return color
 }
 
-fun Float.metersToMiles(): Float = this * UiTools.METERS_TO_MILES_RATIO
+fun Float.metersToMiles(): Float = this * UiTools.MILES_PER_METER_RATIO
 
 fun Toolbar.animateToBackIndicator(drawerColor: Int) {
-    val drawerArrow = DrawerArrowDrawable(this.context)
-    drawerArrow.color = ContextCompat.getColor(this.context, drawerColor)
-    this.navigationIcon = drawerArrow
+    val drawerArrow = DrawerArrowDrawable(context)
+    drawerArrow.color = ContextCompat.getColor(context, drawerColor)
+    navigationIcon = drawerArrow
     ObjectAnimator.ofFloat(drawerArrow, UiTools.NAV_DRAWER_ICON_ANIM, 0f, 1f).start()
 }
 
 fun Toolbar.animateToDrawerIndicator(drawerColor: Int, completionRunnable: Runnable?) {
-    val drawerArrow = DrawerArrowDrawable(this.context)
-    drawerArrow.color = ContextCompat.getColor(this.context, drawerColor)
-    this.navigationIcon = drawerArrow
+    val drawerArrow = DrawerArrowDrawable(context)
+    drawerArrow.color = ContextCompat.getColor(context, drawerColor)
+    navigationIcon = drawerArrow
     val animator = ObjectAnimator.ofFloat(drawerArrow, UiTools.NAV_DRAWER_ICON_ANIM, 1f, 0f)
 
     completionRunnable?.let {
@@ -122,9 +120,9 @@ fun Toolbar.animateToDrawerIndicator(drawerColor: Int, completionRunnable: Runna
 }
 
 fun Toolbar.showDrawerIcon(drawerColor: Int) {
-    val drawerArrow = DrawerArrowDrawable(this.context)
-    drawerArrow.color = ContextCompat.getColor(this.context, drawerColor)
-    this.navigationIcon = drawerArrow
+    val drawerArrow = DrawerArrowDrawable(context)
+    drawerArrow.color = ContextCompat.getColor(context, drawerColor)
+    navigationIcon = drawerArrow
     drawerArrow.progress = 0f
 }
 
@@ -135,7 +133,6 @@ fun View?.enableDisableView(enabled: Boolean) {
         it.isEnabled = enabled
 
         if (it is ViewGroup) {
-
             for (i in 0 until it.childCount) {
                 it.getChildAt(i).enableDisableView(enabled)
             }

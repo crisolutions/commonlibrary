@@ -3,6 +3,7 @@ package com.crisolutions.commonlib.utils;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,15 @@ public final class AnimationUtils {
     private AnimationUtils() {
     }
 
-    public static void animateHeight(View view, boolean collapse) {
+    public static void animateHeight(@NonNull View view, boolean collapse) {
         animateHeight(view, collapse, null);
     }
 
-    public static void animateHeight(View view, boolean collapse, @Nullable Runnable animationFinishedCallback) {
+    public static void animateHeight(
+            @NonNull View view,
+            boolean collapse,
+            @Nullable Runnable animationFinishedCallback
+    ) {
         if (collapse) {
             collapseView(view, true, false, animationFinishedCallback);
         } else {
@@ -29,7 +34,7 @@ public final class AnimationUtils {
         }
     }
 
-    public static void animateWidth(View view, boolean collapse, boolean instant) {
+    public static void animateWidth(@NonNull View view, boolean collapse, boolean instant) {
         if (collapse) {
             collapseView(view, false, instant, null);
         } else {
@@ -38,9 +43,9 @@ public final class AnimationUtils {
     }
 
     private static void collapseView(
-            final View view,
+            @NonNull final View view,
             final boolean forHeight,
-            boolean instant,
+            final boolean instant,
             @Nullable final Runnable animationFinishedCallback) {
         int value = forHeight ? view.getHeight() : view.getWidth();
         ValueAnimator animator = ValueAnimator.ofInt(value, 0);
@@ -76,7 +81,11 @@ public final class AnimationUtils {
     }
 
     private static void expandView(
-            final View view, final boolean forHeight, boolean instant, @Nullable final Runnable animationFinishedCallback) {
+            @NonNull final View view,
+            final boolean forHeight,
+            final boolean instant,
+            @Nullable final Runnable animationFinishedCallback
+    ) {
         view.setVisibility(View.VISIBLE);
         view.measure(makeMeasureSpec(0, UNSPECIFIED), makeMeasureSpec(0, UNSPECIFIED));
         int value = forHeight ? view.getMeasuredHeight() : view.getMeasuredWidth();
