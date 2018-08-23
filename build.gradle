@@ -1,17 +1,12 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    ext.kotlin_version = '1.1.51'
+    ext.kotlinVersion = '1.2.60'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
@@ -23,22 +18,32 @@ allprojects {
 }
 
 ext {
-    supportLibraryVersion = '27.0.2'
+    supportLibraryVersion = '27.1.1'
     buildToolsVersion = '27.0.3'
-    daggerVersion = '2.14.1'
-    timberVersion = '4.6.0'
-    retrofitVersion = '2.3.0'
-    rxJavaVersion = '2.1.8'
+    daggerVersion = '2.17'
+    timberVersion = '4.7.1'
+    retrofitVersion = '2.4.0'
+    rxJavaVersion = '2.2.0'
+    androidKtxVersion = '1.0.0-rc01'
     targetSdkVersion = 27
-    compileSdkVersion = 27
+    compileSdkVersion = 28
     minSdkVersion = 19
+
+    // Test Versions
+    junitVersion = '4.12'
+    androidTestRunnerVersion = '1.0.2'
+    espressoVersion = '3.0.2'
 }
 
 ext.deps = [
         dagger                : "com.google.dagger:dagger:${daggerVersion}",
         timber                : "com.jakewharton.timber:timber:${timberVersion}",
         retrofit              : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-        rxjava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+        rxjava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+        // Test Dependencies
+        junit                 : "junit:junit:$junitVersion",
+        androidTestRunner     : "com.android.support.test:runner:$androidTestRunnerVersion",
+        espressoCore          : "com.android.support.test.espresso:espresso-core:$espressoVersion",
 ]
 
 task clean(type: Delete) {

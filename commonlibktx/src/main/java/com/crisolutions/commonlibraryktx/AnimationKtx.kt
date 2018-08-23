@@ -8,94 +8,86 @@ import android.view.View.GONE
 import android.view.View.MeasureSpec.UNSPECIFIED
 import android.view.View.MeasureSpec.makeMeasureSpec
 import android.view.View.VISIBLE
-import android.view.ViewGroup
-import android.view.animation.Animation
 
-class AnimationTools {
-    companion object {
-        const val DEFAULT_DURATION = 400L
+object AnimationTools {
+    private const val DEFAULT_DURATION = 400L
 
-        fun collapseView(view: View, forHeight: Boolean, insant: Boolean, animationFinishCallback: Runnable?) {
-            val value = if (forHeight) view.height else view.width
+    fun collapseView(view: View, forHeight: Boolean, instant: Boolean, animationFinishCallback: Runnable? = null) {
+        val value = if (forHeight) view.height else view.width
 
-            val animator = ValueAnimator.ofInt(value, 0)
+        val animator = ValueAnimator.ofInt(value, 0)
 
-            if (insant) {
+        if (instant) {
+            val params = view.layoutParams
+            if (forHeight) {
+                params.height = 0
+            } else {
+                params.width = 0
+            }
+            view.layoutParams = params
+        } else {
+            animator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    view.visibility = GONE
+                    animationFinishCallback?.run()
+                }
+            })
+            animator.addUpdateListener {
                 val params = view.layoutParams
                 if (forHeight) {
-                    params.height = 0
+                    params.height = it.animatedValue as Int
                 } else {
-                    params.width = 0
+                    params.width = it.animatedValue as Int
                 }
                 view.layoutParams = params
-            } else {
-                animator.addListener(object: AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator?) {
-                        view.visibility = GONE
-                        animationFinishCallback?.run()
-                    }
-                })
-                animator.addUpdateListener {
-                    val params = view.layoutParams
-                    if (forHeight) {
-                        params.height = it.animatedValue as Int
-                    } else {
-                        params.width = it.animatedValue as Int
-                    }
-                    view.layoutParams = params
-                }
+            }
 
-                animator.run {
-                    duration = AnimationTools.DEFAULT_DURATION
-                    start()
-                }
+            animator.run {
+                duration = AnimationTools.DEFAULT_DURATION
+                start()
             }
         }
+    }
 
-        fun expandView(view: View, forHeight: Boolean, instant: Boolean, animationFinishCallback: Runnable?) {
-            view.visibility = VISIBLE
-            view.measure(makeMeasureSpec(0, UNSPECIFIED), makeMeasureSpec(0, UNSPECIFIED))
-            val value = if (forHeight) view.measuredHeight else view.measuredWidth
-            if (instant) {
+    fun expandView(view: View, forHeight: Boolean, instant: Boolean, animationFinishCallback: Runnable? = null) {
+        view.visibility = VISIBLE
+        view.measure(makeMeasureSpec(0, UNSPECIFIED), makeMeasureSpec(0, UNSPECIFIED))
+        val value = if (forHeight) view.measuredHeight else view.measuredWidth
+        if (instant) {
+            val params = view.layoutParams
+            if (forHeight) {
+                params.height = value
+            } else {
+                params.width = value
+            }
+            view.layoutParams = params
+        } else {
+            val animator = ValueAnimator.ofInt(0, value)
+            animationFinishCallback?.let {
+                animator.addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator?) {
+                        animationFinishCallback.run()
+                    }
+                })
+            }
+            animator.addUpdateListener {
                 val params = view.layoutParams
                 if (forHeight) {
-                    params.height = value
+                    params.height = it.animatedValue as Int
                 } else {
-                    params.width = value
+                    params.width = it.animatedValue as Int
                 }
                 view.layoutParams = params
-            } else {
-                val animator = ValueAnimator.ofInt(0, value)
-                animationFinishCallback?.let {
-                    animator.addListener(object: AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
-                            animationFinishCallback.run()
-                        }
-                    })
-                }
-                animator.addUpdateListener {
-                    val params = view.layoutParams
-                    if (forHeight) {
-                        params.height = it.animatedValue as Int
-                    } else {
-                        params.width = it.animatedValue as Int
-                    }
-                    view.layoutParams = params
-                }
-                animator.run {
-                    duration = AnimationTools.DEFAULT_DURATION
-                    start()
-                }
+            }
+            animator.run {
+                duration = AnimationTools.DEFAULT_DURATION
+                start()
             }
         }
     }
 }
 
-fun View.animateHeight(collapse: Boolean) {
-    this.animateHeight(collapse)
-}
-
-fun View.animateHeight(collapse: Boolean, animationFinishCallback: Runnable?) {
+fun View.animateHeight(collapse: Boolean, animationFinishCallback: Runnable? = null) {
     if (collapse) {
         AnimationTools.collapseView(this, true, false, animationFinishCallback)
     } else {
@@ -105,8 +97,8 @@ fun View.animateHeight(collapse: Boolean, animationFinishCallback: Runnable?) {
 
 fun View.animateWidth(collapse: Boolean, instant: Boolean) {
     if (collapse) {
-        AnimationTools.collapseView(this, false, instant, null)
+        AnimationTools.collapseView(this, false, instant)
     } else {
-        AnimationTools.expandView(this, false, instant, null)
+        AnimationTools.expandView(this, false, instant)
     }
 }

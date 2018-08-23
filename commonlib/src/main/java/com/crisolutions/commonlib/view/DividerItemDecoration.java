@@ -149,7 +149,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         return viewHolder != null && viewHolder.getAdapterPosition() < skipCount;
     }
 
-    public static class Builder {
+    public static final class Builder {
 
         private Context context;
         private int resId;

@@ -1,5 +1,6 @@
 package com.crisolutions.commonlib.utils;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.Collection;
@@ -15,21 +16,21 @@ public final class CollectionUtils {
     }
 
     @Nullable
-    public static <T> T find(Collection<T> collection, T key) {
+    public static <T> T find(@NonNull Collection<T> collection, T key) {
         for (T t : collection) {
             if (t.equals(key)) {
                 return t;
             }
         }
-
         return null;
     }
 
-    public static <T> T lastItem(List<T> list){
-        if (isEmpty(list)){
+    @Nullable
+    public static <T> T lastItem(List<T> list) {
+        if (isEmpty(list)) {
             return null;
         } else {
-            return list.get(list.size()-1);
+            return list.get(list.size() - 1);
         }
     }
 }

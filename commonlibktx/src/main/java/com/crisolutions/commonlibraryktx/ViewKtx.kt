@@ -5,28 +5,50 @@ import android.text.InputFilter
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
-import java.util.*
+import androidx.core.view.isVisible
+import java.util.Arrays
 
 fun TextInputLayout.setTextInputLayoutError(error: String) {
     this.error = error
     if (error.isEmpty()) {
-        this.isErrorEnabled = false
+        isErrorEnabled = false
     }
 }
 
 fun View.setRippleBackground(shouldShowRippleBackground: Boolean) {
     if (shouldShowRippleBackground) {
         val outValue = TypedValue()
-        this.context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
-        this.setBackgroundResource(outValue.resourceId)
+        context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
+        setBackgroundResource(outValue.resourceId)
     } else {
-        this.background = null
+        background = null
     }
 }
 
 fun EditText.addInputFilter(inputFilter: InputFilter) {
-    val originalInputFilters = this.filters
+    val originalInputFilters = filters
     val inputFilters = Arrays.copyOf(originalInputFilters, originalInputFilters.size + 1)
     inputFilters[inputFilters.size - 1] = inputFilter
-    this.filters = inputFilters
+    filters = inputFilters
+}
+
+@Deprecated(
+        "This will be removed in the next release",
+        ReplaceWith("Use isVisible instead", "androidx.core.view.isVisible"),
+        DeprecationLevel.ERROR
+)
+fun View.setVisibility(isVisible: Boolean) {
+    this.isVisible = isVisible
+}
+
+fun View.setVisibility(vv: ViewVisibility) {
+    visibility = when (vv) {
+        ViewVisibility.VISIBLE -> View.VISIBLE
+        ViewVisibility.INVISIBLE -> View.INVISIBLE
+        ViewVisibility.GONE -> View.GONE
+    }
+}
+
+enum class ViewVisibility {
+    VISIBLE, INVISIBLE, GONE
 }

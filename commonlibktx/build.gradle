@@ -10,7 +10,6 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -19,19 +18,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    api "androidx.core:core-ktx:$androidKtxVersion"
+    implementation "com.android.support:exifinterface:$supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    testImplementation deps.junit
+
+    androidTestImplementation deps.androidTestRunner
+    androidTestImplementation deps.espressoCore
 }
+
 repositories {
     mavenCentral()
 }
