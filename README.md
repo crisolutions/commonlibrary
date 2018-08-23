@@ -20,3 +20,6 @@ And then add the dependency :
 ```
 implementation 'com.github.crisolutions:commonlibrary:1.0'
 ```
+
+##Releasing
+The [RELEASING.md](./RELEASING.md) file includes information on the releasing process for the library.
