@@ -33,8 +33,9 @@ android {
 
 dependencies {
     implementation deps.base.stdlibKt
+
     implementation deps.androidx.common
-    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation deps.androidx.design
 
     implementation project(':commonlib')
     implementation project(':commonlibktx')

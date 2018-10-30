@@ -24,8 +24,10 @@ dependencies {
 
     api deps.androidx.ktx
 
-    implementation "com.android.support:design:$supportLibraryVersion"
     implementation deps.base.stdlibKt
+
+    implementation deps.androidx.design
+    implementation deps.androidx.exif
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidTestRunner

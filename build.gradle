@@ -29,6 +29,8 @@ ext {
     compileSdkVersion = 28
     minSdkVersion = 19
     androidxArchCoreVersion = '2.0.0'
+    androidxExifVersion = '1.0.0'
+    androidxDesignVersion = '1.0.0-rc01'
 
     // Test Versions
     junitVersion = '4.12'
@@ -58,7 +60,9 @@ ext.deps = [
         'androidx':
                 [
                         ktx   : "androidx.core:core-ktx:$androidKtxVersion",
-                        common: "androidx.arch.core:core-common:$androidxArchCoreVersion"
+                        common: "androidx.arch.core:core-common:$androidxArchCoreVersion",
+                        design: "com.google.android.material:material:$androidxDesignVersion",
+                        exif  : "androidx.exifinterface:exifinterface:$androidxExifVersion"
                 ]
 ]
 
