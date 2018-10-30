@@ -21,15 +21,15 @@ android {
 }
 
 dependencies {
-    api "androidx.core:core-ktx:$androidKtxVersion"
+
+    api deps.androidx.ktx
 
     implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation deps.base.stdlibKt
 
-    testImplementation deps.junit
-
-    androidTestImplementation deps.androidTestRunner
-    androidTestImplementation deps.espressoCore
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidTestRunner
+    androidTestImplementation deps.test.espressoCore
 }
 
 repositories {

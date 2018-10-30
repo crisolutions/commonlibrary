@@ -37,14 +37,29 @@ ext {
 }
 
 ext.deps = [
-        dagger                : "com.google.dagger:dagger:${daggerVersion}",
-        timber                : "com.jakewharton.timber:timber:${timberVersion}",
-        retrofit              : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-        rxjava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+
+        'base'    :
+                [
+                        dagger  : "com.google.dagger:dagger:${daggerVersion}",
+                        timber  : "com.jakewharton.timber:timber:${timberVersion}",
+                        retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                        rxjava  : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+                        stdlibKt: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+                ],
         // Test Dependencies
-        junit                 : "junit:junit:$junitVersion",
-        androidTestRunner     : "com.android.support.test:runner:$androidTestRunnerVersion",
-        espressoCore          : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+        'test'    :
+                [
+                        junit            : "junit:junit:$junitVersion",
+                        androidTestRunner: "com.android.support.test:runner:$androidTestRunnerVersion",
+                        espressoCore     : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+                ],
+
+        'androidx':
+                [
+                        ktx   : "androidx.core:core-ktx:$androidKtxVersion",
+                        common: "androidx.arch.core:core-common:$androidxArchCoreVersion"
+                ]
 ]
 
 task clean(type: Delete) {

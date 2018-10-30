@@ -32,14 +32,14 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "androidx.arch.core:core-common:$androidxArchCoreVersion"
+    implementation deps.base.stdlibKt
+    implementation deps.androidx.common
     implementation "com.android.support:design:$supportLibraryVersion"
+
     implementation project(':commonlib')
     implementation project(':commonlibktx')
 
-    testImplementation deps.junit
-
-    androidTestImplementation deps.androidTestRunner
-    androidTestImplementation deps.espressoCore
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidTestRunner
+    androidTestImplementation deps.test.espressoCore
 }
