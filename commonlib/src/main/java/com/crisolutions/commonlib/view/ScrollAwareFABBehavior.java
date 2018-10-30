@@ -1,14 +1,14 @@
 package com.crisolutions.commonlib.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.crisolutions.commonlib.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 @SuppressWarnings("unused") // This class is used in resources.
 public final class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {

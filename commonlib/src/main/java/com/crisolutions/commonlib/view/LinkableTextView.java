@@ -1,8 +1,6 @@
 package com.crisolutions.commonlib.view;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -12,6 +10,9 @@ import com.crisolutions.commonlib.utils.UiUtils;
 
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 
 public class LinkableTextView extends AppCompatTextView {
     private static final String PHONE_PATTERN_DEFINITION = "(\\+1[\\s.-]?|1[\\s.-]?)?([0-9]{3}|\\([0-9]{3}\\))" +

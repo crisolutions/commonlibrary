@@ -22,8 +22,7 @@ android {
 
 dependencies {
     api "androidx.core:core-ktx:$androidKtxVersion"
-    implementation "com.android.support:exifinterface:$supportLibraryVersion"
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+
     implementation "com.android.support:design:$supportLibraryVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 

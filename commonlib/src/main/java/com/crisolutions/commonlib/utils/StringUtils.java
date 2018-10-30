@@ -1,12 +1,13 @@
 package com.crisolutions.commonlib.utils;
 
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.Html;
 
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public final class StringUtils {
 
@@ -58,7 +59,7 @@ public final class StringUtils {
     }
 
     public static String stripNonDigits(@Nullable String phoneNumber) {
-        if (phoneNumber == null){
+        if (phoneNumber == null) {
             return null;
         }
 
