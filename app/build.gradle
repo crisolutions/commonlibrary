@@ -36,7 +36,6 @@ dependencies {
     implementation deps.androidx.common
     implementation deps.androidx.design
 
-    implementation project(':commonlib')
     implementation project(':commonlibktx')
 
     testImplementation deps.test.junit
