@@ -1,11 +1,11 @@
 buildscript {
-    ext.kotlinVersion = '1.2.60'
+    ext.kotlinVersion = '1.3.0'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:3.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
@@ -18,16 +18,19 @@ allprojects {
 }
 
 ext {
-    supportLibraryVersion = '27.1.1'
+    supportLibraryVersion = '28.0.0'
     buildToolsVersion = '27.0.3'
     daggerVersion = '2.17'
     timberVersion = '4.7.1'
     retrofitVersion = '2.4.0'
     rxJavaVersion = '2.2.0'
-    androidKtxVersion = '1.0.0-rc01'
+    androidKtxVersion = '1.0.0'
     targetSdkVersion = 27
     compileSdkVersion = 28
     minSdkVersion = 19
+    androidxArchCoreVersion = '2.0.0'
+    androidxExifVersion = '1.0.0'
+    androidxDesignVersion = '1.0.0-rc01'
 
     // Test Versions
     junitVersion = '4.12'
@@ -36,14 +39,31 @@ ext {
 }
 
 ext.deps = [
-        dagger                : "com.google.dagger:dagger:${daggerVersion}",
-        timber                : "com.jakewharton.timber:timber:${timberVersion}",
-        retrofit              : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-        rxjava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+
+        'base'    :
+                [
+                        dagger  : "com.google.dagger:dagger:${daggerVersion}",
+                        timber  : "com.jakewharton.timber:timber:${timberVersion}",
+                        retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                        rxjava  : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+                        stdlibKt: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+                ],
         // Test Dependencies
-        junit                 : "junit:junit:$junitVersion",
-        androidTestRunner     : "com.android.support.test:runner:$androidTestRunnerVersion",
-        espressoCore          : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+        'test'    :
+                [
+                        junit            : "junit:junit:$junitVersion",
+                        androidTestRunner: "com.android.support.test:runner:$androidTestRunnerVersion",
+                        espressoCore     : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+                ],
+
+        'androidx':
+                [
+                        ktx   : "androidx.core:core-ktx:$androidKtxVersion",
+                        common: "androidx.arch.core:core-common:$androidxArchCoreVersion",
+                        design: "com.google.android.material:material:$androidxDesignVersion",
+                        exif  : "androidx.exifinterface:exifinterface:$androidxExifVersion"
+                ]
 ]
 
 task clean(type: Delete) {

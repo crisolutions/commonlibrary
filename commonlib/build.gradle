@@ -25,17 +25,15 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "com.android.support:exifinterface:$supportLibraryVersion"
+    implementation deps.androidx.design
+    implementation deps.androidx.exif
 
-    implementation deps.dagger
-    implementation deps.timber
-    implementation deps.retrofit
-    implementation deps.rxjava
+    implementation deps.base.dagger
+    implementation deps.base.timber
+    implementation deps.base.retrofit
+    implementation deps.base.rxjava
 
-    testImplementation deps.junit
-
-    androidTestImplementation deps.androidTestRunner
-    androidTestImplementation deps.espressoCore
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidTestRunner
+    androidTestImplementation deps.test.espressoCore
 }

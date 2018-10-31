@@ -1,12 +1,12 @@
 package com.crisolutions.commonlibraryktx
 
-import android.support.design.widget.TextInputLayout
 import android.text.InputFilter
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import androidx.core.view.isVisible
-import java.util.Arrays
+import com.google.android.material.textfield.TextInputLayout
+import java.util.*
 
 fun TextInputLayout.setTextInputLayoutError(error: String) {
     this.error = error

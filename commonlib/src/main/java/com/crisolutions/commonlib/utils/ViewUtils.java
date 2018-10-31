@@ -1,13 +1,15 @@
 package com.crisolutions.commonlib.utils;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputLayout;
 import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.util.Arrays;
+
+import androidx.annotation.NonNull;
 
 public final class ViewUtils {
 

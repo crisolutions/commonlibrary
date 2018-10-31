@@ -3,7 +3,7 @@ package com.crisolutions.commonlibraryktx
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
-import android.support.v4.content.FileProvider
+import androidx.core.content.FileProvider
 import com.crisolutions.commonlibraryktx.FileTools.JPEG_QUALITY
 import java.io.BufferedInputStream
 import java.io.BufferedWriter
@@ -15,8 +15,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 object FileTools {
     const val JPEG_QUALITY = 80

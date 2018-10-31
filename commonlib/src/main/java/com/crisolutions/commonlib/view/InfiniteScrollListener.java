@@ -15,9 +15,9 @@ package com.crisolutions.commonlib.view;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import dagger.internal.Preconditions;
 
 /**
@@ -33,7 +33,7 @@ public abstract class InfiniteScrollListener extends RecyclerView.OnScrollListen
      * to RecyclerView with addOnScrollListener method
      *
      * @param maxItemsPerRequest Max items to be loaded in a single request.
-     * @param layoutManager LinearLayoutManager created in the Activity.
+     * @param layoutManager      LinearLayoutManager created in the Activity.
      */
     protected InfiniteScrollListener(int maxItemsPerRequest, LinearLayoutManager layoutManager) {
         checkIfPositive(maxItemsPerRequest, "maxItemsPerRequest <= 0");
@@ -46,10 +46,11 @@ public abstract class InfiniteScrollListener extends RecyclerView.OnScrollListen
      * Callback method to be invoked when the RecyclerView has been scrolled
      *
      * @param recyclerView The RecyclerView which scrolled.
-     * @param dx The amount of horizontal scroll.
-     * @param dy The amount of vertical scroll.
+     * @param dx           The amount of horizontal scroll.
+     * @param dy           The amount of vertical scroll.
      */
-    @Override public final void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+    @Override
+    public final void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
         if (canLoadMoreItems()) {
             onScrolledToEnd(layoutManager.findFirstVisibleItemPosition());
@@ -60,8 +61,8 @@ public abstract class InfiniteScrollListener extends RecyclerView.OnScrollListen
      * Refreshes RecyclerView by setting new adapter,
      * calling invalidate method and scrolling to given position
      *
-     * @param view RecyclerView to be refreshed
-     * @param adapter adapter with new list of items to be loaded
+     * @param view     RecyclerView to be refreshed
+     * @param adapter  adapter with new list of items to be loaded
      * @param position position to which RecyclerView will be scrolled
      */
     protected void refreshView(RecyclerView view, RecyclerView.Adapter adapter, int position) {

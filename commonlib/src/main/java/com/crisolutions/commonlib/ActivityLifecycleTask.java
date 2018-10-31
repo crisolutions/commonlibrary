@@ -1,6 +1,6 @@
 package com.crisolutions.commonlib;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class ActivityLifecycleTask {
 

@@ -4,12 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
-import io.reactivex.functions.Function;
-import okhttp3.ResponseBody;
-import timber.log.Timber;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
@@ -23,6 +17,13 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
+import io.reactivex.functions.Function;
+import okhttp3.ResponseBody;
+import timber.log.Timber;
 
 public final class FileUtils {
 

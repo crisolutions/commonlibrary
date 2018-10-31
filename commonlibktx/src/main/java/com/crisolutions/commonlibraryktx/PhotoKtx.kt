@@ -6,8 +6,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.media.ExifInterface
+import androidx.annotation.RequiresApi
+import androidx.exifinterface.media.ExifInterface
 import java.io.InputStream
 
 @RequiresApi(Build.VERSION_CODES.N)
