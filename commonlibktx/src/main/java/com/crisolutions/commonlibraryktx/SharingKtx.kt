@@ -21,8 +21,10 @@ fun Context.sendEmail(email: String) {
     startActivity(Intent.createChooser(intent, null))
 }
 
-fun Context.openDialer(phone: String) {
-    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
+fun Context.openDialer(no: String) {
+    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", no, null)).apply {
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    }
     startActivity(intent)
 }
 

@@ -4,6 +4,7 @@ import android.text.InputFilter
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
@@ -30,6 +31,14 @@ fun EditText.addInputFilter(inputFilter: InputFilter) {
     val inputFilters = Arrays.copyOf(originalInputFilters, originalInputFilters.size + 1)
     inputFilters[inputFilters.size - 1] = inputFilter
     filters = inputFilters
+}
+
+fun View.setGone(boolean: Boolean) {
+    this.isGone = boolean
+}
+
+fun View.setVisible(boolean: Boolean) {
+    this.isVisible = boolean
 }
 
 @Deprecated(
