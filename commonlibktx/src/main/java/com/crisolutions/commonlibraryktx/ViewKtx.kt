@@ -40,15 +40,3 @@ fun EditText.addInputFilter(inputFilter: InputFilter) {
 fun View.setVisibility(isVisible: Boolean) {
     this.isVisible = isVisible
 }
-
-fun View.setVisibility(vv: ViewVisibility) {
-    visibility = when (vv) {
-        ViewVisibility.VISIBLE -> View.VISIBLE
-        ViewVisibility.INVISIBLE -> View.INVISIBLE
-        ViewVisibility.GONE -> View.GONE
-    }
-}
-
-enum class ViewVisibility {
-    VISIBLE, INVISIBLE, GONE
-}
