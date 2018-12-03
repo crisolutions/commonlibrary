@@ -31,7 +31,7 @@ internal class MaskedCharSequence(
         maxLength: Int
 ) : CharSequence {
 
-    private var resolvedLength = if (maxLength != -1) Math.min(maxLength, original.length) else original.length
+    private val resolvedLength = if (maxLength != -1) Math.min(maxLength, original.length) else original.length
 
     override val length: Int
         get() = resolvedLength
