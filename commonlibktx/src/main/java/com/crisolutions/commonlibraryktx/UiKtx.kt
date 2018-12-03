@@ -56,17 +56,15 @@ fun String.openExternalLink(context: Context, errorMessage: String) {
     }
 }
 
-fun Context?.openSettings() {
-    this?.let {
-        val intent = Intent()
-        val uri: Uri = Uri.fromParts("package", it.packageName, null)
-        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-        intent.data = uri
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-        it.startActivity(intent)
-    }
+fun Context.openSettings() {
+    val intent = Intent()
+    val uri: Uri = Uri.fromParts("package", packageName, null)
+    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+    intent.data = uri
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+    intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+    startActivity(intent)
 }
 
 fun Float.convertDpToPixel(context: Context): Float {
@@ -119,6 +117,11 @@ fun Toolbar.animateToDrawerIndicator(drawerColor: Int, completionRunnable: Runna
     animator.start()
 }
 
+@Deprecated(
+        message = "This will be removed in the next release",
+        replaceWith = ReplaceWith("Use internal implementation"),
+        level = DeprecationLevel.ERROR
+)
 fun Toolbar.showDrawerIcon(drawerColor: Int) {
     val drawerArrow = DrawerArrowDrawable(context)
     drawerArrow.color = ContextCompat.getColor(context, drawerColor)

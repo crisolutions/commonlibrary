@@ -17,22 +17,21 @@ fun String.maskText(visibleChars: Int, maskCharacter: Char) = maskText(visibleCh
 
 fun String.maskText(visibleChars: Int, maxLength: Int) = maskText(visibleChars, TextTools.DOT, maxLength)
 
-fun String.maskText(visibleChars: Int, maskCharacter: Char, maxLength: Int): CharSequence {
-    return when {
-        length <= visibleChars -> this
-        maxLength != -1 && maxLength < visibleChars -> throw IllegalArgumentException("Cannot have a max length be shorter than the visible character count")
-        else -> MaskedCharSequence(this, visibleChars, maskCharacter, maxLength)
-    }
+fun String.maskText(visibleChars: Int, maskCharacter: Char, maxLength: Int): CharSequence = when {
+    length <= visibleChars -> this
+    maxLength != -1 && maxLength < visibleChars -> throw IllegalArgumentException("Cannot have a max length be shorter than the visible character count")
+    else -> MaskedCharSequence(this, visibleChars, maskCharacter, maxLength)
 }
 
+
 internal class MaskedCharSequence(
-    private val original: CharSequence,
-    private val visibleLength: Int,
-    private val maskedChar: Char,
-    maxLength: Int
+        private val original: CharSequence,
+        private val visibleLength: Int,
+        private val maskedChar: Char,
+        maxLength: Int
 ) : CharSequence {
 
-    var resolvedLength = if (maxLength != -1) Math.min(maxLength, original.length) else original.length
+    private val resolvedLength = if (maxLength != -1) Math.min(maxLength, original.length) else original.length
 
     override val length: Int
         get() = resolvedLength
@@ -41,12 +40,10 @@ internal class MaskedCharSequence(
         throw IllegalArgumentException("Cannot sub-sequence masked text")
     }
 
-    override fun get(index: Int): Char {
-        return if (index < resolvedLength - visibleLength) {
-            maskedChar
-        } else {
-            original[resolveIndex(index)]
-        }
+    override fun get(index: Int): Char = if (index < resolvedLength - visibleLength) {
+        maskedChar
+    } else {
+        original[resolveIndex(index)]
     }
 
     override fun toString(): String {

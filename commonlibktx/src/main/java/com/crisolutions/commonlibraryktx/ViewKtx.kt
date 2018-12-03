@@ -4,6 +4,7 @@ import android.text.InputFilter
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
@@ -32,6 +33,14 @@ fun EditText.addInputFilter(inputFilter: InputFilter) {
     filters = inputFilters
 }
 
+fun View.setGone(boolean: Boolean) {
+    this.isGone = boolean
+}
+
+fun View.setVisible(boolean: Boolean) {
+    this.isVisible = boolean
+}
+
 @Deprecated(
         "This will be removed in the next release",
         ReplaceWith("Use isVisible instead", "androidx.core.view.isVisible"),
@@ -39,16 +48,4 @@ fun EditText.addInputFilter(inputFilter: InputFilter) {
 )
 fun View.setVisibility(isVisible: Boolean) {
     this.isVisible = isVisible
-}
-
-fun View.setVisibility(vv: ViewVisibility) {
-    visibility = when (vv) {
-        ViewVisibility.VISIBLE -> View.VISIBLE
-        ViewVisibility.INVISIBLE -> View.INVISIBLE
-        ViewVisibility.GONE -> View.GONE
-    }
-}
-
-enum class ViewVisibility {
-    VISIBLE, INVISIBLE, GONE
 }
