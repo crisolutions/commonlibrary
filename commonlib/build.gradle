@@ -1,19 +1,13 @@
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.crisolutions.commonlibrarysample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0.1"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,13 +25,13 @@ android {
 }
 
 dependencies {
-    implementation deps.base.stdlibKt
-
-    implementation deps.androidx.common
     implementation deps.androidx.design
+    implementation deps.androidx.exif
 
-    implementation project(':commonlib')
-    implementation project(':commonlibktx')
+    implementation deps.base.dagger
+    implementation deps.base.timber
+    implementation deps.base.retrofit
+    implementation deps.base.rxjava
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidTestRunner

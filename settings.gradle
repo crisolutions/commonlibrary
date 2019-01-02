@@ -1,1 +1,1 @@
-include ':app', ':commonlibktx'
+include ':app', ':commonlib', ':commonlibktx'
