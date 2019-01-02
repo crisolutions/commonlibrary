@@ -3,24 +3,19 @@ package com.crisolutions.commonlibraryktx
 import android.os.Build
 import android.text.Html
 
-fun String.stripNonDigits(): String {
-    return this.replace(kotlin.text.Regex("[\\D]"), "")
-}
+fun String.stripNonDigits(): String = replace(kotlin.text.Regex("[\\D]"), "")
 
+@Deprecated(
+        "This will be removed in the next release",
+        ReplaceWith("Use joinToString from Kotlin stdlib instead", "kotlin.collections.joinToString"),
+        DeprecationLevel.ERROR
+)
 fun Array<String>.arrayToMultiLineString(): String {
-    if (this.isEmpty()) {
-        return ""
-    }
-
-    val sb = StringBuilder()
-    this.map {
-        sb.append(it).append("\n")
-    }
-    return sb.toString().trim()
+    return joinToString("\n")
 }
 
 fun String.capitalizeWords(): String {
-    val pieces: List<String> = this.split(" ")
+    val pieces: List<String> = split(" ")
 
     val sb = StringBuilder()
     pieces.map {
@@ -32,10 +27,9 @@ fun String.capitalizeWords(): String {
     return sb.toString().trim()
 }
 
-fun String.convertFromHtml(): String {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
-    } else {
-        Html.fromHtml(this).toString()
-    }
+fun String.convertFromHtml(): String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+    Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
+} else {
+    @Suppress("DEPRECATION")
+    Html.fromHtml(this).toString()
 }

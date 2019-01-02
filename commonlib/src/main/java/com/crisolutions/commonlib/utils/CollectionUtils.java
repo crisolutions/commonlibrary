@@ -1,9 +1,10 @@
 package com.crisolutions.commonlib.utils;
 
-import android.support.annotation.Nullable;
-
 import java.util.Collection;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public final class CollectionUtils {
 
@@ -15,13 +16,12 @@ public final class CollectionUtils {
     }
 
     @Nullable
-    public static <T> T find(Collection<T> collection, T key) {
+    public static <T> T find(@NonNull Collection<T> collection, T key) {
         for (T t : collection) {
             if (t.equals(key)) {
                 return t;
             }
         }
-
         return null;
     }
 

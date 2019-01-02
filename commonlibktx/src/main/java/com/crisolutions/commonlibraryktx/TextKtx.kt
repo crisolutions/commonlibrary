@@ -2,38 +2,36 @@ package com.crisolutions.commonlibraryktx
 
 import android.widget.TextView
 
-class TextTools {
-    companion object {
-        const val DOT: Char = '\u2022'
-    }
+object TextTools {
+    const val DOT = '\u2022'
 }
+
 fun TextView.getTextWidth(): Int {
-    this.measure(0, 0)
-    return this.measuredWidth
+    measure(0, 0)
+    return measuredWidth
 }
 
-fun String.maskText(visibleChars: Int) = this.maskText(visibleChars, TextTools.DOT)
+fun String.maskText(visibleChars: Int) = maskText(visibleChars, TextTools.DOT)
 
-fun String.maskText(visibleChars: Int, maskCharacter: Char) = this.maskText(visibleChars, maskCharacter, -1)
+fun String.maskText(visibleChars: Int, maskCharacter: Char) = maskText(visibleChars, maskCharacter, -1)
 
-fun String.maskText(visibleChars: Int, maxLength: Int) = this.maskText(visibleChars, TextTools.DOT, maxLength)
+fun String.maskText(visibleChars: Int, maxLength: Int) = maskText(visibleChars, TextTools.DOT, maxLength)
 
-fun String.maskText(visibleChars: Int, maskCharacter: Char, maxLength: Int): CharSequence {
-    return when {
-        this.length <= visibleChars -> this
-        maxLength != -1 && maxLength < visibleChars -> throw IllegalArgumentException("Cannot have a max length be shorter than the visible character count")
-        else -> MaskedCharSequence(this, visibleChars, maskCharacter, maxLength)
-    }
+fun String.maskText(visibleChars: Int, maskCharacter: Char, maxLength: Int): CharSequence = when {
+    length <= visibleChars -> this
+    maxLength != -1 && maxLength < visibleChars -> throw IllegalArgumentException("Cannot have a max length be shorter than the visible character count")
+    else -> MaskedCharSequence(this, visibleChars, maskCharacter, maxLength)
 }
 
-class MaskedCharSequence(
-        val original: CharSequence,
-        val visibleLength: Int,
-        val maskedChar: Char,
-        val maxLength: Int
-    ) : CharSequence {
 
-    var resolvedLength = if (maxLength != -1) Math.min(maxLength, original.length) else original.length
+internal class MaskedCharSequence(
+        private val original: CharSequence,
+        private val visibleLength: Int,
+        private val maskedChar: Char,
+        maxLength: Int
+) : CharSequence {
+
+    private val resolvedLength = if (maxLength != -1) Math.min(maxLength, original.length) else original.length
 
     override val length: Int
         get() = resolvedLength
@@ -42,12 +40,10 @@ class MaskedCharSequence(
         throw IllegalArgumentException("Cannot sub-sequence masked text")
     }
 
-    override fun get(index: Int): Char {
-        return if (index < resolvedLength - visibleLength) {
-            maskedChar
-        } else {
-            original[resolveIndex(index)]
-        }
+    override fun get(index: Int): Char = if (index < resolvedLength - visibleLength) {
+        maskedChar
+    } else {
+        original[resolveIndex(index)]
     }
 
     override fun toString(): String {

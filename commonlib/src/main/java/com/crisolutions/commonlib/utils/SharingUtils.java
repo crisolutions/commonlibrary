@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.widget.Toast;
 
@@ -17,18 +16,25 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class SharingUtils {
-    public static void sendEmail(Context context, String email) {
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
+
+public final class SharingUtils {
+
+    private SharingUtils() {
+    }
+
+    public static void sendEmail(@NonNull Context context, @NonNull String email) {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null));
         context.startActivity(Intent.createChooser(emailIntent, null));
     }
 
-    public static void openDialer(Context context, String phone) {
+    public static void openDialer(@NonNull Context context, @NonNull String phone) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         context.startActivity(intent);
     }
 
-    public static void openMaps(Context context, double lat, double lng) {
+    public static void openMaps(@NonNull Context context, double lat, double lng) {
         String url = "http://maps.google.com/maps?daddr=" + lat + "," +
                 lng + "&f=d&dirflg=d&nav=1";
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -36,7 +42,7 @@ public class SharingUtils {
         context.startActivity(intent);
     }
 
-    public static void openMaps(Context context, String address) {
+    public static void openMaps(@NonNull Context context, @NonNull String address) {
         String url = "http://maps.google.com/maps?q=" + address;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 
@@ -48,7 +54,7 @@ public class SharingUtils {
      *
      * @param imageContent Base64 string of the image
      */
-    public static void shareImage(Context context, String imageContent) {
+    public static void shareImage(@NonNull Context context, @NonNull String imageContent) {
         byte[] checkFront = Base64.decode(imageContent, Base64.DEFAULT);
 
         Bitmap image = BitmapFactory.decodeByteArray(checkFront, 0, checkFront.length);
@@ -71,7 +77,7 @@ public class SharingUtils {
         shareFile(context, newFile);
     }
 
-    public static void shareFile(Context context, File file) {
+    public static void shareFile(@NonNull Context context, @NonNull File file) {
         Uri contentUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", file);
 
         if (contentUri != null) {
@@ -85,11 +91,14 @@ public class SharingUtils {
         }
     }
 
-    public static void copyToClipboard(Context context, String label, String text) {
-        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText(label, text);
-        clipboardManager.setPrimaryClip(clip);
+    public static void copyToClipboard(@NonNull Context context, String label, String text) {
+        final ClipboardManager clipboardManager =
+                (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboardManager != null) {
+            ClipData clip = ClipData.newPlainText(label, text);
+            clipboardManager.setPrimaryClip(clip);
 
-        Toast.makeText(context, context.getString(R.string.message_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.message_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+        }
     }
 }
