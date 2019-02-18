@@ -29,6 +29,9 @@ dependencies {
     implementation deps.androidx.design
     implementation deps.androidx.exif
 
+    implementation deps.rx.rxJava
+    implementation deps.rx.rxRelay
+
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidTestRunner
     androidTestImplementation deps.test.espressoCore

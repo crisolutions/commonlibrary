@@ -32,6 +32,10 @@ ext {
     androidxExifVersion = '1.0.0'
     androidxDesignVersion = '1.0.0-rc01'
 
+    // rx
+    rxJavaVersion = '2.2.2'
+    rxRelayVersion = '2.1.0'
+
     // Test Versions
     junitVersion = '4.12'
     androidTestRunnerVersion = '1.0.2'
@@ -63,6 +67,12 @@ ext.deps = [
                         common: "androidx.arch.core:core-common:$androidxArchCoreVersion",
                         design: "com.google.android.material:material:$androidxDesignVersion",
                         exif  : "androidx.exifinterface:exifinterface:$androidxExifVersion"
+                ],
+
+        'rx'      :
+                [
+                        rxJava : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+                        rxRelay: "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion",
                 ]
 ]
 
