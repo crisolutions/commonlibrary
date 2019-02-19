@@ -29,8 +29,14 @@ class ExtensionTests {
                 } ?: fail()
     }
 
+    @Test
+    fun testTransform() {
+
+        val music = "Jazz"
+
+        assertBlock {
+            music.transform { it.toUpperCase() } == "JAZZ"
+        }
+    }
 }
 
-fun fail() {
-    assertTrue(false)
-}
