@@ -42,9 +42,9 @@ fun View.setVisible(boolean: Boolean) {
     this.isVisible = boolean
 }
 
-fun TextView.setTextOrGone(notEmptyData: String) {
-    if (!notEmptyData.isNullOrEmpty()) {
-        text = notEmptyData
+fun TextView.setTextOrGone(data: String) {
+    if (!data.isNullOrEmpty()) {
+        text = data
         isVisible = true
     } else {
         isGone = true

@@ -33,7 +33,7 @@ ext {
     androidxDesignVersion = '1.0.0-rc01'
 
     // rx
-    rxJavaVersion = '2.2.2'
+    rxJavaVersion = '2.2.6'
     rxRelayVersion = '2.1.0'
 
     // Test Versions
