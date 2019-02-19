@@ -10,3 +10,9 @@ fun BehaviorRelay<Boolean>.relayOnTrue(block: () -> (Unit)) {
         if (it) block.invoke()
     }
 }
+
+fun BehaviorRelay<Boolean>.relayOnFalse(block: () -> Unit) {
+    this.value?.let {
+        if (!it) block.invoke()
+    }
+}
