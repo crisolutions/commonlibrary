@@ -38,8 +38,9 @@ ext {
 
     // Test Versions
     junitVersion = '4.12'
-    androidTestRunnerVersion = '1.0.2'
+    androidTestRunnerVersion = '1.1.0'
     espressoVersion = '3.0.2'
+    coreVersion = '1.0.0'
 }
 
 ext.deps = [
@@ -57,7 +58,8 @@ ext.deps = [
         'test'    :
                 [
                         junit            : "junit:junit:$junitVersion",
-                        androidTestRunner: "com.android.support.test:runner:$androidTestRunnerVersion",
+                        core             : "androidx.test:core:$coreVersion",
+                        androidTestRunner: "androidx.test:runner:$androidTestRunnerVersion",
                         espressoCore     : "com.android.support.test.espresso:espresso-core:$espressoVersion",
                 ],
 
