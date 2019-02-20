@@ -1,5 +1,6 @@
 package com.crisolutions.commonlibraryktx
 
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -34,9 +35,7 @@ class ExtensionTests {
 
         val music = "Jazz"
 
-        assertBlock {
-            music.transform { it.toUpperCase() } == "JAZZ"
-        }
+        assertEquals(music.transform { it.toUpperCase() }, "JAZZ")
     }
 }
 

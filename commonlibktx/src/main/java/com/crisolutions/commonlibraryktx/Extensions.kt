@@ -8,10 +8,7 @@ package com.crisolutions.commonlibraryktx
 // Continues the chain only if block is true.
 
 //
-fun <T> T.filterIf(block: (T) -> Boolean): T? =
-        if (block.invoke(this)) {
-            this
-        } else null
+fun <T> T.filterIf(block: (T) -> Boolean): T? = if (block.invoke(this)) this else null
 
 // Map but for the entire object
 fun <R, E> R.transform(block: (R) -> E): E = block.invoke(this)
