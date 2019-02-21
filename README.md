@@ -18,8 +18,31 @@ allprojects {
 And then add the dependency :
 
 ```
-implementation 'com.github.crisolutions:commonlibrary:1.0'
+implementation 'com.github.crisolutions:commonlibrary:x.y.z'
 ```
 
-##Releasing
+To use just the Kotlin module of the library, of the module `commonlibktx`, you may only add this instead :
+
+```
+implementation 'com.github.crisolutions.commonlibrary:commonlib:x.y.z'
+```
+
+
+where `x.y.z` is the latest release available.
+
+Finally, update the Source and Target Compatibility to 1.8 in Project Structure for whichever module this dependency is being added to, or add
+
+```
+android {
+        ...
+	compileOptions {
+       	    sourceCompatibility JavaVersion.VERSION_1_8
+	    targetCompatibility JavaVersion.VERSION_1_8
+	}
+}
+```
+
+to the module's gradle file.
+
+## Releasing
 The [RELEASING.md](./RELEASING.md) file includes information on the releasing process for the library.
