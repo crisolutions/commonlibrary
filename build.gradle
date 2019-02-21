@@ -32,10 +32,15 @@ ext {
     androidxExifVersion = '1.0.0'
     androidxDesignVersion = '1.0.0-rc01'
 
+    // rx
+    rxJavaVersion = '2.2.6'
+    rxRelayVersion = '2.1.0'
+
     // Test Versions
     junitVersion = '4.12'
-    androidTestRunnerVersion = '1.0.2'
+    androidTestRunnerVersion = '1.1.0'
     espressoVersion = '3.0.2'
+    coreVersion = '1.0.0'
 }
 
 ext.deps = [
@@ -53,7 +58,8 @@ ext.deps = [
         'test'    :
                 [
                         junit            : "junit:junit:$junitVersion",
-                        androidTestRunner: "com.android.support.test:runner:$androidTestRunnerVersion",
+                        core             : "androidx.test:core:$coreVersion",
+                        androidTestRunner: "androidx.test:runner:$androidTestRunnerVersion",
                         espressoCore     : "com.android.support.test.espresso:espresso-core:$espressoVersion",
                 ],
 
@@ -63,6 +69,12 @@ ext.deps = [
                         common: "androidx.arch.core:core-common:$androidxArchCoreVersion",
                         design: "com.google.android.material:material:$androidxDesignVersion",
                         exif  : "androidx.exifinterface:exifinterface:$androidxExifVersion"
+                ],
+
+        'rx'      :
+                [
+                        rxJava : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+                        rxRelay: "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion",
                 ]
 ]
 

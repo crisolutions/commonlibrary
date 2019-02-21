@@ -9,7 +9,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -28,6 +28,9 @@ dependencies {
 
     implementation deps.androidx.design
     implementation deps.androidx.exif
+
+    implementation deps.rx.rxJava
+    implementation deps.rx.rxRelay
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidTestRunner

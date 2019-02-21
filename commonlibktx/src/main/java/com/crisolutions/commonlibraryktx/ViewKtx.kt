@@ -4,6 +4,7 @@ import android.text.InputFilter
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputLayout
@@ -39,6 +40,15 @@ fun View.setGone(boolean: Boolean) {
 
 fun View.setVisible(boolean: Boolean) {
     this.isVisible = boolean
+}
+
+fun TextView.setTextOrGone(data: String) {
+    if (!data.isNullOrEmpty()) {
+        text = data
+        isVisible = true
+    } else {
+        isGone = true
+    }
 }
 
 @Deprecated(
