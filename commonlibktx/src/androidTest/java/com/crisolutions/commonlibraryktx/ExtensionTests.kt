@@ -1,7 +1,6 @@
 package com.crisolutions.commonlibraryktx
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 class ExtensionTests {
@@ -11,7 +10,7 @@ class ExtensionTests {
 
         val name = "John"
 
-        name.filterIf { it == "Johns" }?.let {
+        name.filterIf { it == "John" }?.let {
             assertTrue(it == "John")
         } ?: fail()
     }
@@ -33,9 +32,12 @@ class ExtensionTests {
     @Test
     fun testTransform() {
 
-        val music = "Jazz"
+        val genres = arrayOf("Rock music", "Classical music", "Pop music")
 
-        assertEquals(music.transform { it.toUpperCase() }, "JAZZ")
+        assertEquals(
+                "Classical Music",
+                genres.first { it.first() == 'C' }.transform { it.capitalizeWords() }
+        )
     }
 }
 

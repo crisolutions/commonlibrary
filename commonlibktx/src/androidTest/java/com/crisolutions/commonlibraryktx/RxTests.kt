@@ -3,6 +3,7 @@ package com.crisolutions.commonlibraryktx
 import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
+import junit.framework.Assert.*
 import org.junit.Test
 
 class RxTests {
@@ -31,10 +32,13 @@ class RxTests {
     fun testRelayOnTrue() {
 
         val testRelay = BehaviorRelay.createDefault(true)
+        var value = false
 
         testRelay.relayOnTrue {
-            pass()
+            value = true
         }
+
+        assertTrue(value)
     }
 
     @Test
@@ -51,10 +55,13 @@ class RxTests {
     fun testRelayOnFalse() {
 
         val testRelay = BehaviorRelay.createDefault(false)
+        var value = true
 
         testRelay.relayOnFalse {
-            pass()
+            value = false
         }
+
+        assertFalse(value)
     }
 
     @Test
