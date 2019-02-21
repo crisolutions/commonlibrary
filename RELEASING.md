@@ -1,4 +1,4 @@
-#Releasing
+# Releasing
 
 This project is published using [jitpack](jitpack.io). Any version increment tagged on the master branch will be automatically made available as an artifact by jitpack. 
 
