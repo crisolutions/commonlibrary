@@ -1,48 +1,61 @@
 package com.crisolutions.commonlibraryktx
 
-import android.support.design.widget.TextInputLayout
 import android.text.InputFilter
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
 fun TextInputLayout.setTextInputLayoutError(error: String) {
     this.error = error
     if (error.isEmpty()) {
-        this.isErrorEnabled = false
+        isErrorEnabled = false
     }
 }
 
 fun View.setRippleBackground(shouldShowRippleBackground: Boolean) {
     if (shouldShowRippleBackground) {
         val outValue = TypedValue()
-        this.context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
-        this.setBackgroundResource(outValue.resourceId)
+        context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
+        setBackgroundResource(outValue.resourceId)
     } else {
-        this.background = null
+        background = null
     }
 }
 
 fun EditText.addInputFilter(inputFilter: InputFilter) {
-    val originalInputFilters = this.filters
+    val originalInputFilters = filters
     val inputFilters = Arrays.copyOf(originalInputFilters, originalInputFilters.size + 1)
     inputFilters[inputFilters.size - 1] = inputFilter
-    this.filters = inputFilters
+    filters = inputFilters
 }
 
-fun View.setVisibility(bool: Boolean) {
-    this.visibility = if (bool) View.VISIBLE else View.GONE
+fun View.setGone(boolean: Boolean) {
+    this.isGone = boolean
 }
 
-fun View.setVisibility(vv: ViewVisibility) {
-    this.visibility = when (vv) {
-        ViewVisibility.VISIBLE -> View.VISIBLE
-        ViewVisibility.INVISIBLE -> View.INVISIBLE
-        ViewVisibility.GONE -> View.GONE
+fun View.setVisible(boolean: Boolean) {
+    this.isVisible = boolean
+}
+
+fun TextView.setTextOrGone(data: String) {
+    if (!data.isNullOrEmpty()) {
+        text = data
+        isVisible = true
+    } else {
+        isGone = true
     }
 }
 
-enum class ViewVisibility {
-    VISIBLE, INVISIBLE, GONE
+@Deprecated(
+        "This will be removed in the next release",
+        ReplaceWith("Use isVisible instead", "androidx.core.view.isVisible"),
+        DeprecationLevel.ERROR
+)
+fun View.setVisibility(isVisible: Boolean) {
+    this.isVisible = isVisible
 }

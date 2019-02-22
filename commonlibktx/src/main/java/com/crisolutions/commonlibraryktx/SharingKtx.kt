@@ -8,33 +8,34 @@ import android.content.Intent.ACTION_SEND
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.support.v4.content.FileProvider
 import android.util.Base64
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import java.io.File
 import java.io.FileOutputStream
 
 fun Context.sendEmail(email: String) {
     val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null))
-    this.startActivity(Intent.createChooser(intent, null))
+    startActivity(Intent.createChooser(intent, null))
 }
 
-fun Context.openDialer(phone: String) {
-    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
-    this.startActivity(intent)
+fun Context.openDialer(no: String) {
+    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", no, null)).apply {
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    }
+    startActivity(intent)
 }
 
 fun Context.openMapWithLocation(lat: Double, lng: Double) {
     val url = "http://maps.google.com/maps?daddr=$lat,$lng&f=d&dirflg=d&nav=1"
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-    this.startActivity(intent)
+    startActivity(intent)
 }
 
 fun Context.openMapFromAddress(address: String) {
-    val url = "http://maps.google.com/maps?q=$address"
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-    this.startActivity(intent)
+    startActivity(Intent(Intent.ACTION_VIEW, "http://maps.google.com/maps?q=$address".toUri()))
 }
 
 fun Context.shareImage(imageContent: String) {
@@ -42,7 +43,7 @@ fun Context.shareImage(imageContent: String) {
     val image = BitmapFactory.decodeByteArray(checkFront, 0, checkFront.size)
 
     try {
-        val cachePath = File(this.cacheDir, "images")
+        val cachePath = File(cacheDir, "images")
         cachePath.mkdirs() // don't forget to make the directory
         val stream = FileOutputStream("$cachePath/image.png") // overwrites this image every
 
@@ -53,22 +54,22 @@ fun Context.shareImage(imageContent: String) {
         e.printStackTrace()
     }
 
-    val imagePath = File(this.cacheDir, "images")
+    val imagePath = File(cacheDir, "images")
     val newFile = File(imagePath, "image.png")
 
-    this.shareFile(newFile)
+    shareFile(newFile)
 }
 
 fun Context.shareFile(file: File) {
-    val contentUri = FileProvider.getUriForFile(this, "${this.packageName}.fileprovider", file)
+    val contentUri = FileProvider.getUriForFile(this, "$packageName.fileprovider", file)
 
     contentUri?.let {
         val shareIntent = Intent()
         shareIntent.action = ACTION_SEND
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        shareIntent.setDataAndType(contentUri, this.contentResolver.getType(contentUri))
+        shareIntent.setDataAndType(contentUri, contentResolver.getType(contentUri))
         shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
-        this.startActivity(Intent.createChooser(shareIntent, "ShareFile"))
+        startActivity(Intent.createChooser(shareIntent, "ShareFile"))
     }
 }
 

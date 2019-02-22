@@ -2,32 +2,34 @@ package com.crisolutions.commonlib.utils;
 
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public final class TextUtils {
 
     private static final char DOT = '\u2022';
 
     private TextUtils() {
-
     }
 
-    public static int getTextWidth(TextView textView) {
+    public static int getTextWidth(@NonNull TextView textView) {
         textView.measure(0, 0);
         return textView.getMeasuredWidth();
     }
 
-    public static CharSequence maskText(String text, int visibleChars) {
+    public static CharSequence maskText(@Nullable String text, int visibleChars) {
         return maskText(text, visibleChars, DOT);
     }
 
-    public static CharSequence maskText(String text, int visibleChars, char maskCharacter) {
+    public static CharSequence maskText(@Nullable String text, int visibleChars, char maskCharacter) {
         return maskText(text, visibleChars, maskCharacter, -1);
     }
 
-    public static CharSequence maskText(String text, int visibleChars, int maxLength) {
+    public static CharSequence maskText(@Nullable String text, int visibleChars, int maxLength) {
         return maskText(text, visibleChars, DOT, maxLength);
     }
 
-    public static CharSequence maskText(String text, int visibleChars, char maskCharacter, int maxLength) {
+    public static CharSequence maskText(@Nullable String text, int visibleChars, char maskCharacter, int maxLength) {
         if (text == null) {
             return "";
         }
@@ -41,7 +43,7 @@ public final class TextUtils {
         return new MaskedCharSequence(text, visibleChars, maskCharacter, maxLength);
     }
 
-    static final class MaskedCharSequence implements CharSequence {
+    private static final class MaskedCharSequence implements CharSequence {
 
         private final CharSequence original;
         private final int visibleLength;

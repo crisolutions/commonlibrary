@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
@@ -20,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import io.reactivex.functions.Function;
 import okhttp3.ResponseBody;
 import timber.log.Timber;
@@ -33,11 +34,10 @@ public final class FileUtils {
             new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
 
     private FileUtils() {
-
     }
 
     @Nullable
-    public static File writeBytesToTempFile(Context context, byte[] bytes, String extension) {
+    public static File writeBytesToTempFile(@NonNull Context context, byte[] bytes, String extension) {
         File tempFile = getTempFile(context, extension);
         OutputStream outputStream;
         try {
@@ -52,7 +52,7 @@ public final class FileUtils {
         return tempFile;
     }
 
-    public static Uri getPhotoOutputFile(Context context) {
+    public static Uri getPhotoOutputFile(@NonNull Context context) {
         @SuppressLint("SimpleDateFormat")
         File file = getShareableFile(context, FILE_TIMESTAMP_FORMATTER.format(new Date()) + ".jpg");
         return FileProvider.getUriForFile(
@@ -63,7 +63,7 @@ public final class FileUtils {
     }
 
     @Nullable
-    public static Uri textToHtml(Context context, String text, String fileName) {
+    public static Uri textToHtml(@NonNull Context context, String text, String fileName) {
         Uri fileUri = null;
         try {
             File tempFile = getShareableFile(context, fileName);
@@ -85,7 +85,7 @@ public final class FileUtils {
         return fileUri;
     }
 
-    public static Function<ResponseBody, File> parseResponseToFile(Context context, String tempFileName) {
+    public static Function<ResponseBody, File> parseResponseToFile(@NonNull Context context, String tempFileName) {
         return responseBody -> {
             File tempFile = FileUtils.getShareableFile(context, tempFileName);
             try (OutputStream outputStream = new FileOutputStream(tempFile);
@@ -96,7 +96,7 @@ public final class FileUtils {
         };
     }
 
-    public static File writeBitmapToFile(Context context, Bitmap bitmap) throws IOException {
+    public static File writeBitmapToFile(@NonNull Context context, Bitmap bitmap) throws IOException {
         File bitmapFile = getTempFile(context, ".jpg");
         try (FileOutputStream fos = new FileOutputStream(bitmapFile)) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, JPEG_QUALITY, fos);
@@ -104,7 +104,7 @@ public final class FileUtils {
         return bitmapFile;
     }
 
-    public static byte[] bytesFromFile(File file) throws IOException {
+    public static byte[] bytesFromFile(@NonNull File file) throws IOException {
         int size = (int) file.length();
         byte[] result = new byte[size];
         try (BufferedInputStream is = new BufferedInputStream(new FileInputStream(file))) {
@@ -119,7 +119,10 @@ public final class FileUtils {
      * Writes bytes from an input stream to an output stream using a buffer. This does NOT close/flush streams
      * afterwards; it is assumed that the stream instances are passed here from within a try-with-resources block.
      */
-    private static void writeInputToOutput(InputStream inputStream, OutputStream outputStream) throws IOException {
+    private static void writeInputToOutput(
+            @NonNull InputStream inputStream,
+            @NonNull OutputStream outputStream
+    ) throws IOException {
         byte[] buffer = new byte[BUFFER_SIZE];
         int read;
         while ((read = inputStream.read(buffer)) != -1) {
@@ -127,11 +130,11 @@ public final class FileUtils {
         }
     }
 
-    private static File getTempDirectory(Context context) {
+    private static File getTempDirectory(@NonNull Context context) {
         return context.getCacheDir();
     }
 
-    private static File getSharedDirectory(Context context) {
+    private static File getSharedDirectory(@NonNull Context context) {
         File shareDir = new File(context.getFilesDir(), SHARE_DIR);
         if (!shareDir.exists()) {
             //noinspection ResultOfMethodCallIgnored
@@ -140,12 +143,12 @@ public final class FileUtils {
         return shareDir;
     }
 
-    private static File getTempFile(Context context, String extension) {
+    private static File getTempFile(@NonNull Context context, String extension) {
         File tempDir = getTempDirectory(context);
         return new File(tempDir, new Date().toString().replace(" ", "") + extension);
     }
 
-    private static File getShareableFile(Context context, String fileName) {
+    private static File getShareableFile(@NonNull Context context, String fileName) {
         File shareDir = getSharedDirectory(context);
         return new File(shareDir, fileName);
     }

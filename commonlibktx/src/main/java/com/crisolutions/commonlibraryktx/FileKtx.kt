@@ -3,53 +3,52 @@ package com.crisolutions.commonlibraryktx
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
-import android.support.v4.content.FileProvider
-import com.crisolutions.commonlibraryktx.FileTools.Companion.JPEG_QUALITY
-import java.io.*
+import androidx.core.content.FileProvider
+import com.crisolutions.commonlibraryktx.FileTools.JPEG_QUALITY
+import java.io.BufferedInputStream
+import java.io.BufferedWriter
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.FileWriter
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FileTools {
-    companion object {
-        const val BUFFER_SIZE = 4096
-        const val SHARE_DIR = "shared/"
-        const val JPEG_QUALITY = 80
-        val FILE_TIMESTAMP_FORMATTER = SimpleDateFormat("yyyMMdd_HHmmss", Locale.getDefault())
+object FileTools {
+    const val JPEG_QUALITY = 80
+    val FILE_TIMESTAMP_FORMATTER = SimpleDateFormat("yyyMMdd_HHmmss", Locale.getDefault())
 
-        @Throws(IOException::class)
-        fun writeInputToOutput(inputStream: InputStream, outputStream: OutputStream) {
-            val buffer = ByteArray(BUFFER_SIZE)
+    @Throws(IOException::class)
+    fun writeInputToOutput(inputStream: InputStream, outputStream: OutputStream) {
+        val buffer = ByteArray(4096)
 
-            //not sure..
-            val read = inputStream.read(buffer)
-            while (read != -1) {
-                outputStream.write(buffer, 0, read)
-            }
+        val read = inputStream.read(buffer)
+        while (read != -1) {
+            outputStream.write(buffer, 0, read)
         }
+    }
 
-        fun getTempDirectory(context: Context): File = context.cacheDir
-
-        fun getSharedDirectory(context: Context): File {
-            val shareDir = File(context.filesDir, SHARE_DIR)
-            if (!shareDir.exists()) {
-                shareDir.mkdirs()
-            }
-            return shareDir
+    fun getSharedDirectory(context: Context): File {
+        val shareDir = File(context.filesDir, "shared/")
+        if (!shareDir.exists()) {
+            shareDir.mkdirs()
         }
+        return shareDir
+    }
 
-        fun getTempFile(context: Context, extension: String): File {
-            val tempDir = getTempDirectory(context)
-            return File(tempDir, "${Date().toString().replace(" ", "")}$extension")
-        }
+    fun getTempFile(context: Context, extension: String): File {
+        return File(context.cacheDir, "${Date().toString().replace(" ", "")}$extension")
+    }
 
-        fun getShareableFile(context: Context, fileName: String): File{
-            val shareDir = getSharedDirectory(context)
-            return File(shareDir, fileName)
-        }
+    fun getShareableFile(context: Context, fileName: String): File {
+        val shareDir = getSharedDirectory(context)
+        return File(shareDir, fileName)
     }
 }
 
-// Use for test of extension type
 fun Context.writeBytesToTempFile(byteArray: ByteArray, extension: String): File? {
     val tempFile = FileTools.getTempFile(this, extension)
     val outputStream: OutputStream?
@@ -68,9 +67,9 @@ fun Context.writeBytesToTempFile(byteArray: ByteArray, extension: String): File?
     return tempFile
 }
 
-fun Context.getPhotoOutputFile(context: Context): Uri {
+fun Context.getPhotoOutputFile(): Uri {
     val file = FileTools.getShareableFile(this, "${FileTools.FILE_TIMESTAMP_FORMATTER.format(Date())}.jpg")
-    return FileProvider.getUriForFile(this, "${this.applicationContext.packageName}.fileprovider", file)
+    return FileProvider.getUriForFile(this, "${applicationContext.packageName}.fileprovider", file)
 }
 
 fun String.textToHtml(context: Context, fileName: String): Uri? {
@@ -102,17 +101,17 @@ fun String.textToHtml(context: Context, fileName: String): Uri? {
 
 fun Bitmap.writeToFile(context: Context): File {
     val bitmapFile = FileTools.getTempFile(context, ".jpg")
-    FileOutputStream(bitmapFile).use {
-        fos -> this.compress(Bitmap.CompressFormat.JPEG, JPEG_QUALITY, fos)
+    FileOutputStream(bitmapFile).use { fos ->
+        compress(Bitmap.CompressFormat.JPEG, JPEG_QUALITY, fos)
     }
     return bitmapFile
 }
 
 fun File.bytesFromFile(): ByteArray? {
-    val size = this.length().toInt()
+    val size = length().toInt()
     val result = ByteArray(size)
-    BufferedInputStream(FileInputStream(this)).use {
-        bis -> if (bis.read(result, 0, result.size) != -1) return result
+    BufferedInputStream(FileInputStream(this)).use { bis ->
+        if (bis.read(result, 0, result.size) != -1) return result
     }
     return null
 }

@@ -1,30 +1,30 @@
 package com.crisolutions.commonlib;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 
 public abstract class ActivityLifecycleTask {
 
-    public void onCreate(AppCompatActivity activity) {
+    public void onCreate(Activity activity) {
 
     }
 
-    public void onStart(AppCompatActivity activity) {
+    public void onStart(Activity activity) {
 
     }
 
-    public void onPostCreate(AppCompatActivity activity) {
+    public void onPostCreate(Activity activity) {
 
     }
 
-    public void onResume(AppCompatActivity activity) {
+    public void onResume(Activity activity) {
 
     }
 
-    public void onPause(AppCompatActivity activity) {
+    public void onPause(Activity activity) {
 
     }
 
-    public void onStop(AppCompatActivity activity) {
+    public void onStop(Activity activity) {
 
     }
 

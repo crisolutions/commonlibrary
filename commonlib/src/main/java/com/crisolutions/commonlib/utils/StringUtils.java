@@ -1,12 +1,13 @@
 package com.crisolutions.commonlib.utils;
 
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.Html;
 
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public final class StringUtils {
 
@@ -50,22 +51,22 @@ public final class StringUtils {
         return isEmpty(value) ? null : value;
     }
 
-    public static String safeString(String value) {
+    public static String safeString(@Nullable String value) {
         if (value == null) {
             return "";
         }
         return value;
     }
 
-    public static String stripNonDigits(String phoneNumber) {
-        if (phoneNumber == null){
+    public static String stripNonDigits(@Nullable String phoneNumber) {
+        if (phoneNumber == null) {
             return null;
         }
 
         return phoneNumber.replaceAll("[\\D]", "");
     }
 
-    public static boolean safeEquals(String first, String second) {
+    public static boolean safeEquals(@Nullable String first, @Nullable String second) {
         if (first == null) {
             return second == null;
         }
