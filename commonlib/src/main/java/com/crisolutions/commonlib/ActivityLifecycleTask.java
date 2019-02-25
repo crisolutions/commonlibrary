@@ -28,7 +28,7 @@ public abstract class ActivityLifecycleTask {
 
     }
 
-    public void onDestroy(AppCompatActivity activity) {
+    public void onDestroy(Activity activity) {
 
     }
 }
