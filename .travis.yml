@@ -12,4 +12,4 @@ install:
 - yes | sdkmanager "system-images;android-28;default;x86"
 
 script:
-- ./gradlew clean build
+- ./gradlew clean build -w
