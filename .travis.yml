@@ -5,14 +5,11 @@ jdk:
 
 install:
 # Let's use the new command 'sdkmanager' to install Android SDK components
-- yes | sdkmanager --verbose "build-tools;28.0.2"
-- yes | sdkmanager --verbose "platform-tools"
-- yes | sdkmanager --verbose "tools"
-- yes | sdkmanager --verbose "platforms;android-28"
-- yes | sdkmanager --verbose "system-images;android-28;default;x86"
-
-# Check tools and dependencies installed
-- yes | sdkmanager --list
+- yes | sdkmanager "build-tools;28.0.2"
+- yes | sdkmanager "platform-tools"
+- yes | sdkmanager "tools"
+- yes | sdkmanager "platforms;android-28"
+- yes | sdkmanager "system-images;android-28;default;x86"
 
 script:
 - ./gradlew clean build
