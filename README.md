@@ -1,7 +1,5 @@
 # Common Library
-[![Build Status](https://travis-ci.org/crisolutions/commonlibrary.svg?branch=master)](https://travis-ci.org/crisolutions/commonlibrary)
-
-[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/#crisolutions/commonlibrary)
+[![Release](https://jitpack.io/v/crisolutions/commonlibrary.svg)](https://jitpack.io/#crisolutions/commonlibrary) [![Build Status](https://travis-ci.org/crisolutions/commonlibrary.svg?branch=master)](https://travis-ci.org/crisolutions/commonlibrary)
 
 Library of the Common module from CRI Solutions.
 
