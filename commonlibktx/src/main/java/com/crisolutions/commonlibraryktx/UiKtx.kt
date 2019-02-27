@@ -57,13 +57,14 @@ fun String.openExternalLink(context: Context, errorMessage: String) {
 }
 
 fun Context.openSettings() {
-    val intent = Intent()
     val uri: Uri = Uri.fromParts("package", packageName, null)
-    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-    intent.data = uri
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-    intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+    val intent = Intent().apply {
+        action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+        data = uri
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+        addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+    }
     startActivity(intent)
 }
 

@@ -64,11 +64,12 @@ fun Context.shareFile(file: File) {
     val contentUri = FileProvider.getUriForFile(this, "$packageName.fileprovider", file)
 
     contentUri?.let {
-        val shareIntent = Intent()
-        shareIntent.action = ACTION_SEND
-        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        shareIntent.setDataAndType(contentUri, contentResolver.getType(contentUri))
-        shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
+        val shareIntent = Intent().apply {
+            action = ACTION_SEND
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            setDataAndType(contentUri, contentResolver.getType(contentUri))
+            putExtra(Intent.EXTRA_STREAM, contentUri)
+        }
         startActivity(Intent.createChooser(shareIntent, "ShareFile"))
     }
 }
@@ -79,7 +80,7 @@ fun String.copyToClipboard(context: Context, label: String) {
     clipData?.let {
         clipboardManager.primaryClip = clipData
         Toast.makeText(context, "Copied to Clipboard", LENGTH_SHORT).show()
-    } ?: kotlin.run {
+    } ?: run {
         Toast.makeText(context, "Error copying to Clipboard", LENGTH_SHORT).show()
     }
 }

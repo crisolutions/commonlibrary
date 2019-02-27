@@ -42,20 +42,11 @@ fun View.setVisible(boolean: Boolean) {
     this.isVisible = boolean
 }
 
-fun TextView.setTextOrGone(data: String) {
+fun TextView.setTextOrGone(data: String?) {
     if (!data.isNullOrEmpty()) {
         text = data
         isVisible = true
     } else {
         isGone = true
     }
-}
-
-@Deprecated(
-        "This will be removed in the next release",
-        ReplaceWith("Use isVisible instead", "androidx.core.view.isVisible"),
-        DeprecationLevel.ERROR
-)
-fun View.setVisibility(isVisible: Boolean) {
-    this.isVisible = isVisible
 }

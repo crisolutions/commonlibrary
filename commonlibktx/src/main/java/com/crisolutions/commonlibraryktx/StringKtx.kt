@@ -5,15 +5,6 @@ import android.text.Html
 
 fun String.stripNonDigits(): String = replace(kotlin.text.Regex("[\\D]"), "")
 
-@Deprecated(
-        "This will be removed in the next release",
-        ReplaceWith("Use joinToString from Kotlin stdlib instead", "kotlin.collections.joinToString"),
-        DeprecationLevel.ERROR
-)
-fun Array<String>.arrayToMultiLineString(): String {
-    return joinToString("\n")
-}
-
 fun String.capitalizeWords(): String {
     val pieces: List<String> = split(" ")
 

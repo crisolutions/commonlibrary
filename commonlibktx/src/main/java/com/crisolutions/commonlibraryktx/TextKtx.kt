@@ -2,7 +2,7 @@ package com.crisolutions.commonlibraryktx
 
 import android.widget.TextView
 
-object TextTools {
+internal object TextTools {
     const val DOT = '\u2022'
 }
 
@@ -24,7 +24,7 @@ fun String.maskText(visibleChars: Int, maskCharacter: Char, maxLength: Int): Cha
 }
 
 
-internal class MaskedCharSequence(
+class MaskedCharSequence(
         private val original: CharSequence,
         private val visibleLength: Int,
         private val maskedChar: Char,
