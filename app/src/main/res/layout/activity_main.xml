@@ -3,10 +3,19 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
               tools:context="com.crisolutions.commonlibrarysample.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
+
+    <Button
+        android:id="@+id/button_request_permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/request_camera_permission"/>
 </LinearLayout>

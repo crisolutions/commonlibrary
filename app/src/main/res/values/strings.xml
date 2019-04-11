@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Solutions Common Library</string>
+    <string name="request_camera_permission">Request Camera Permission</string>
 </resources>
