@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -29,9 +29,10 @@ dependencies {
     implementation deps.androidx.exif
 
     implementation deps.base.dagger
-    implementation deps.base.timber
     implementation deps.base.retrofit
     implementation deps.base.rxjava
+    implementation deps.base.stdlibKt
+    implementation deps.base.timber
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidTestRunner
