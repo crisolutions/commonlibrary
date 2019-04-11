@@ -1,18 +1,17 @@
 package com.crisolutions.commonlibrarysample
 
+import android.Manifest.permission.CAMERA
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import com.crisolutions.commonlib.utils.permissions.PermissionCheckerUtil
-import com.crisolutions.commonlib.utils.permissions.PermissionType
 import com.crisolutions.commonlibrarysample.Samples.SampleJ
 import com.crisolutions.commonlibrarysample.Samples.SampleKt
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         sampleJ.capitalizeWords()
 
         button_request_permission.setOnClickListener {
-            if (PermissionCheckerUtil.hasPermission(PermissionType.CAMERA, this)) {
+            if (PermissionCheckerUtil.hasPermission(CAMERA, this)) {
                 Toast.makeText(this, "Camera Permission has been granted", Toast.LENGTH_SHORT).show()
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(arrayOf(PermissionType.CAMERA.permissionString), REQUEST_CODE_CAMERA_PERMISSION)
+                requestPermissions(arrayOf(CAMERA), REQUEST_CODE_CAMERA_PERMISSION)
             }
         }
     }

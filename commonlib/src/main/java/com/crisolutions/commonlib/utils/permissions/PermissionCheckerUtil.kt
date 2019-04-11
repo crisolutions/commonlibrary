@@ -10,14 +10,12 @@ object PermissionCheckerUtil {
     @TargetApi(Build.VERSION_CODES.M)
     @JvmStatic
     fun hasPermission(
-            permissionType: PermissionType,
+            permissionString: String,
             context: Context?
-    ): Boolean {
-        return when {
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> true
-            context != null ->
-                PermissionChecker.checkSelfPermission(context, permissionType.permissionString) == PERMISSION_GRANTED
-            else -> false
-        }
+    ) = when {
+        Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> true
+        context != null ->
+            PermissionChecker.checkSelfPermission(context, permissionString) == PERMISSION_GRANTED
+        else -> false
     }
 }
