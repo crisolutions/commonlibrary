@@ -18,8 +18,6 @@ allprojects {
 }
 
 ext {
-    supportLibraryVersion = '28.0.0'
-    buildToolsVersion = '28.0.2'
     daggerVersion = '2.17'
     timberVersion = '4.7.1'
     retrofitVersion = '2.4.0'
@@ -44,7 +42,6 @@ ext {
 }
 
 ext.deps = [
-
         'base'    :
                 [
                         dagger  : "com.google.dagger:dagger:${daggerVersion}",
@@ -54,7 +51,6 @@ ext.deps = [
                         stdlibKt: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
                 ],
-        // Test Dependencies
         'test'    :
                 [
                         junit            : "junit:junit:$junitVersion",

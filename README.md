@@ -1,4 +1,5 @@
 # Common Library
+[![Build Status](https://travis-ci.org/crisolutions/commonlibrary.svg?branch=master)](https://travis-ci.org/crisolutions/commonlibrary)
 
 Library of the Common module from CRI Solutions.
 
