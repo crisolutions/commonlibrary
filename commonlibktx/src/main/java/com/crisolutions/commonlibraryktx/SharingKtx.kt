@@ -1,3 +1,5 @@
+@file:JvmName("SharingUtils")
+
 package com.crisolutions.commonlibraryktx
 
 import android.content.ClipData
@@ -8,7 +10,6 @@ import android.content.Intent.ACTION_SEND
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.util.Base64
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.core.content.FileProvider
@@ -38,26 +39,26 @@ fun Context.openMapFromAddress(address: String) {
     startActivity(Intent(Intent.ACTION_VIEW, "http://maps.google.com/maps?q=$address".toUri()))
 }
 
-fun Context.shareImage(imageContent: String) {
-    val checkFront = Base64.decode(imageContent, Base64.DEFAULT)
-    val image = BitmapFactory.decodeByteArray(checkFront, 0, checkFront.size)
+/**
+ * This method opens the native sharing dialog for images.
+ */
+fun Context.shareImage(imageBytes: ByteArray) {
+    val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+    val cachePath = File(cacheDir, "images")
+    val imageFilename = "image.png"
 
     try {
-        val cachePath = File(cacheDir, "images")
-        cachePath.mkdirs() // don't forget to make the directory
-        val stream = FileOutputStream("$cachePath/image.png") // overwrites this image every
-
-        // time
+        // Don't forget to make the directory.
+        cachePath.mkdirs()
+        val stream = FileOutputStream("$cachePath/$imageFilename")
+        // Overwrite this image every time
         image.compress(Bitmap.CompressFormat.PNG, 100, stream)
         stream.close()
     } catch (e: Exception) {
         e.printStackTrace()
     }
 
-    val imagePath = File(cacheDir, "images")
-    val newFile = File(imagePath, "image.png")
-
-    shareFile(newFile)
+    shareFile(File(cachePath, imageFilename))
 }
 
 fun Context.shareFile(file: File) {
@@ -79,7 +80,7 @@ fun String.copyToClipboard(context: Context, label: String) {
     clipData?.let {
         clipboardManager.primaryClip = clipData
         Toast.makeText(context, "Copied to Clipboard", LENGTH_SHORT).show()
-    } ?: kotlin.run {
+    } ?: run {
         Toast.makeText(context, "Error copying to Clipboard", LENGTH_SHORT).show()
     }
 }
