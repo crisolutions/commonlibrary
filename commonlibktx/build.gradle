@@ -20,7 +20,6 @@ android {
 }
 
 dependencies {
-
     api deps.androidx.ktx
 
     implementation deps.base.stdlibKt
