@@ -25,7 +25,7 @@ implementation 'com.github.crisolutions:commonlibrary:x.y.z'
 To use just the Kotlin module of the library, of the module `commonlibktx`, you may only add this instead :
 
 ```
-implementation 'com.github.crisolutions.commonlibrary:commonlib:x.y.z'
+implementation 'com.github.crisolutions.commonlibrary:commonlibktx:x.y.z'
 ```
 
 
