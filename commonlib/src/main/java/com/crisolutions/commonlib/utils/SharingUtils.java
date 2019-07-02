@@ -31,6 +31,7 @@ public final class SharingUtils {
 
     public static void openDialer(@NonNull Context context, @NonNull String phone) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
