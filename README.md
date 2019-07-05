@@ -1,5 +1,5 @@
 # Common Library
-[![Build Status](https://travis-ci.org/crisolutions/commonlibrary.svg?branch=master)](https://travis-ci.org/crisolutions/commonlibrary)
+[![Release](https://jitpack.io/v/crisolutions/commonlibrary.svg)](https://jitpack.io/#crisolutions/commonlibrary) [![Build Status](https://travis-ci.org/crisolutions/commonlibrary.svg?branch=master)](https://travis-ci.org/crisolutions/commonlibrary)
 
 Library of the Common module from CRI Solutions.
 
@@ -25,7 +25,7 @@ implementation 'com.github.crisolutions:commonlibrary:x.y.z'
 To use just the Kotlin module of the library, of the module `commonlibktx`, you may only add this instead :
 
 ```
-implementation 'com.github.crisolutions.commonlibrary:commonlib:x.y.z'
+implementation 'com.github.crisolutions.commonlibrary:commonlibktx:x.y.z'
 ```
 
 
