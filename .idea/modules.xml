@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="commonlibrary/app" />
-      <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" group="commonlibrary/commonlib" />
-      <module fileurl="file://$PROJECT_DIR$/commonlibktx/commonlibktx.iml" filepath="$PROJECT_DIR$/commonlibktx/commonlibktx.iml" group="commonlibrary/commonlibktx" />
-      <module fileurl="file://$PROJECT_DIR$/commonlibrary.iml" filepath="$PROJECT_DIR$/commonlibrary.iml" group="commonlibrary" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonlibktx/commonlibktx.iml" filepath="$PROJECT_DIR$/commonlibktx/commonlibktx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonlibrary.iml" filepath="$PROJECT_DIR$/commonlibrary.iml" />
     </modules>
   </component>
 </project>
