@@ -16,3 +16,5 @@ fun BehaviorRelay<Boolean>.relayOnFalse(block: () -> Unit) {
         if (!it) block.invoke()
     }
 }
+
+fun <T> T.toObservable(): Observable<T> = Observable.just(this)
