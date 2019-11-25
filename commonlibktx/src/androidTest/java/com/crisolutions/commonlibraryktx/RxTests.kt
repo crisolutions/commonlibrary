@@ -11,9 +11,9 @@ class RxTests {
     @Test
     fun testFilterIfNotEmpty() {
         val testObserver: TestObserver<String> =
-                Observable.just("NotEmpty")
-                        .filterIfNotEmpty()
-                        .test()
+            Observable.just("NotEmpty")
+                .filterIfNotEmpty()
+                .test()
 
         testObserver.assertValue("NotEmpty")
     }
@@ -21,9 +21,9 @@ class RxTests {
     @Test
     fun testFilterIfNotEmptyWithEmpty() {
         val testObserver: TestObserver<String> =
-                Observable.just("")
-                        .filterIfNotEmpty()
-                        .test()
+            Observable.just("")
+                .filterIfNotEmpty()
+                .test()
 
         testObserver.assertNoValues()
     }
@@ -72,5 +72,11 @@ class RxTests {
         testRelay.relayOnFalse {
             fail()
         }
+    }
+
+    @Test
+    fun testToObservable() {
+        val name = "Dimly".toObservable()
+        name.test().assertValue("Dimly")
     }
 }
