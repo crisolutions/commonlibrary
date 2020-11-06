@@ -21,7 +21,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.functions.Function;
 import okhttp3.ResponseBody;
 import timber.log.Timber;
 
@@ -91,6 +91,8 @@ public final class FileUtils {
             try (OutputStream outputStream = new FileOutputStream(tempFile);
                  InputStream inputStream = responseBody.byteStream()) {
                 FileUtils.writeInputToOutput(inputStream, outputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
             return tempFile;
         };

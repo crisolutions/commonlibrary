@@ -30,7 +30,7 @@ dependencies {
 
     implementation deps.base.dagger
     implementation deps.base.retrofit
-    implementation deps.base.rxjava
+    implementation deps.rx.rxJava
     implementation deps.base.stdlibKt
     implementation deps.base.timber
 
