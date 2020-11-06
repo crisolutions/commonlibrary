@@ -31,8 +31,8 @@ ext {
     androidxDesignVersion = '1.0.0-rc01'
 
     // rx
-    rxJavaVersion = '2.2.6'
-    rxRelayVersion = '2.1.0'
+    rxJavaVersion = '3.0.7'
+    rxRelayVersion = '3.0.0'
 
     // Test Versions
     junitVersion = '4.12'
@@ -47,7 +47,6 @@ ext.deps = [
                         dagger  : "com.google.dagger:dagger:${daggerVersion}",
                         timber  : "com.jakewharton.timber:timber:${timberVersion}",
                         retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
-                        rxjava  : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                         stdlibKt: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
                 ],
@@ -69,8 +68,8 @@ ext.deps = [
 
         'rx'      :
                 [
-                        rxJava : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
-                        rxRelay: "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion",
+                        rxJava : "io.reactivex.rxjava3:rxjava:$rxJavaVersion",
+                        rxRelay: "com.jakewharton.rxrelay3:rxrelay:$rxRelayVersion",
                 ]
 ]
 
